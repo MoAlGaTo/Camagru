@@ -11,14 +11,46 @@ class user
 
         $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, passworduser)
         VALUES (:lastname, :firstname, :pseudonym, :email, :passworduser)');
+
+        $statement->bindValue(:lastname, this->$lastname, PDO::PARAM_STR);
+        $statement->bindValue(:firstname, this->$firstname, PDO::PARAM_STR);
+        $statement->bindValue(:pseudonym, this->$pseudonym, PDO::PARAM_STR);
+        $statement->bindValue(:email, this->$email, PDO::PARAM_STR);
+        $statement->bindValue(:passworduser, this->$passworduser, PDO::PARAM_STR);
+
+        $result = $statement->execute();
+
+        return $result;
     }
 
-    public function edit_pseudo($pseudonym, $id)
+    public function edit_information($lastname, $firstname, $pseudonym, $email)
     {
         $db = new DataBase;
 
-        $statement = $db->prepare('UPDATE users SET pseudonym=:pseudonym  WHERE ID=:id');
+        $statement = $db->prepare('UPDATE users 
+        SET lastname=:lastname, firstname=:firstname, pseudonym=:pseudonym, email=:email  WHERE ID=:id');
+
+        $statement->bindValue(:lastname, this->$lastname, PDO::PARAM_STR);
+        $statement->bindValue(:firstname, this->$firstname, PDO::PARAM_STR);
+        $statement->bindValue(:pseudonym, this->$pseudonym, PDO::PARAM_STR);
+        $statement->bindValue(:email, this->$email, PDO::PARAM_STR);
+
+        $result = $statement->execute();
+
+        return $result;
+    }
+
+    public function edit_password($id, $passworduser)
+    {
+        $db = new DataBase;
+
+        $statement = $db->prepare( 'UPDATE users SET passworduser=:passworduser WHERE ID=:id');
+
+        $statement->bindValue(:passworduser, this->$passworduser, PDO::PARAM_STR);
+
+        $result = $statement->execute();
+
+        return $result;
     }
 }
-
-?>
+?>  
