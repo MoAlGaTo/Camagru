@@ -1,1 +1,14 @@
-.form {}
+#form {
+    border: 0.05rem solid gray;
+    padding-left: 0.5rem;
+    width: 25.9rem;
+}
+
+.ou {
+    text-align: center;
+}
+
+input {
+    height: 2.5rem;
+    width: 25rem;
+}
