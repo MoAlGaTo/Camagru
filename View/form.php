@@ -4,34 +4,31 @@
     <meta charset="UTF-8">
     <form method="POST" action="">
         <p class="field">
-            <label for="Pseudo">Pseudonyme</label><br /><input type="text" name="Pseudo" id="Pseudo" placeholder="Adresse e-mail ou Pseudonyme" size="35" maxlength="15">
+            <label for="pseudo_mail">Pseudonyme</label><br /><input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme" size="35" maxlength="15">
         </p>
         <p class="field">
-            <label for="Mot de Passe">Mot de Passe</label><br /><input type="text" name="Pseudo" id="Pseudo" placeholder="Votre Mot De Passe" size="35" maxlength="15">
+            <label for="password_user">Mot de Passe</label><br /><input type="text" name="password_user" id="password_user" placeholder="Votre Mot De Passe" size="35" maxlength="15">
         </p>
 
-    </form>
+    <p class="ou">OU</p>
 
-    <p class="ou">OÙ</p>
-
-    <form method="POST" action="">
         <p class="field">
-            <label for="Nom">Nom</label><br /><input type="text" name="Nom" id="Nom" placeholder="Nom De Famille" size="35" maxlength="35">
+            <label for="lastname">Nom</label><br /><input type="text" name="lastname" id="lastname" placeholder="Nom De Famille" size="35" maxlength="35">
         </p>
         <p class="field">
-            <label for="prenom">Prénom</label><br /><input type="text" name="prenom" id="prenom" placeholder="Prénom" size="35" maxlength="35">
+            <label for="firstname">Prénom</label><br /><input type="text" name="firstname" id="firstname" placeholder="Prénom" size="35" maxlength="35">
         </p>
         <p>
-            <label for="Pseudo">Pseudonyme</label><br /><input type="text" name="Pseudo" id="Pseudo" placeholder="Pseudonyme" size="35" maxlength="15">
+            <label for="pseudonym">Pseudonyme</label><br /><input type="text" name="pseudonym" id="pseudonym" placeholder="Pseudonyme" size="35" maxlength="15">
         </p>
         <p class="field">
-            <label for="mail">E-mail</label><br /><input type="text" name="mail" id="mail" placeholder="E-mail" size="35" maxlength="15">
+            <label for="email">E-mail</label><br /><input type="text" name="email" id="email" placeholder="E-mail" size="35" maxlength="15">
         </p>
         <p class="field">
-            <label for="mdp">Mot de Passe</label><br /><input type="text" name="mdp" id="mdp" placeholder="Mot De Passe" size="35" maxlength="15">
+            <label for="password">Mot de Passe</label><br /><input type="text" name="password" id="password" placeholder="Mot De Passe" size="35" maxlength="15">
         </p>
         <p class="field">
-            <label for="mdpc">Confirmez Votre Mot De Passe</label><br /><input type="text" name="mdpc" id="mdpc" placeholder="Confirmation Mot De Passe" size="35" maxlength="15">
+            <label for="password_confirm">Confirmez Votre Mot De Passe</label><br /><input type="text" name="password_confirm" id="password_confirm" placeholder="Confirmation Mot De Passe" size="35" maxlength="15">
         </p>
     </form>
 </section>
