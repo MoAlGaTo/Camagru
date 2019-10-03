@@ -4,6 +4,35 @@ require_once("DB_connect.php");
 
 class user
 {
+    public function pseudo_verif($pseudonym)
+    {
+        $db = new DataBase;
+
+        $statement = $db->prepare('SELECT pseudonym FROM users WHERE pseudonym=:pseudonym');
+
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        return $count;
+    }
+
+    public function email_verif($email)
+    {
+        $db = new DataBase;
+
+        $statement = $db->prepare('SELECT email FROM users WHERE email=:email');
+
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        return $count;
+    }
 
     public function add_user($lastname, $firstname, $pseudonym, $email, $passworduser)
     {
