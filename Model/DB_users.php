@@ -4,7 +4,7 @@ require_once("DB_connect.php");
 
 class user
 {
-    public function pseudo_verif($pseudonym)
+    public function check_pseudo($pseudonym)
     {
         $db = new DataBase;
 
@@ -19,7 +19,7 @@ class user
         return $count;
     }
 
-    public function email_verif($email)
+    public function check_email($email)
     {
         $db = new DataBase;
 

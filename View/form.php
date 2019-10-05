@@ -1,8 +1,9 @@
-<?php ob_start(); ?>
+<?php ob_start();
+require("../Controller/form_verif.php") ?>
 
 
 <section id="form">
-    <form method="POST" action=>
+    <form method="POST" action="">
         <label for="pseudo_mail">Pseudonyme</label><br />
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme" size="35"
             maxlength="15" />
@@ -11,7 +12,7 @@
         <input type="text" name="password_user" id="password_user" placeholder="Votre Mot De Passe" size="35"
             maxlength="15" />
         <br />
-        <input type="button" value="Se Connecter" />
+        <button class="button">Se Connecter</button>
     </form>
     <br />
     <p class="ou">OU</p>
@@ -40,7 +41,7 @@
             name="password_confirm" id="password_confirm" placeholder="Confirmation Mot De Passe" size="35"
             maxlength="15">
         <br />
-        <input type="button" value="S'inscrire">
+        <button class="button">S'inscrire</button>
     </form>
 </section>
 <?php
