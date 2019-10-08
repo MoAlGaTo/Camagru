@@ -17,22 +17,29 @@ body {
     margin: 0;
 }
 
-#form {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    margin-left: 50%;
-    margin-top: 15%;
+.formsignup label,
+input,
+button {
+    display: block;
+    margin: auto;
 }
 
-#form form {
-    width: 450px;
+
+/* Cadre du formulaire*/
+
+#form {
+    display: flex;
+    flex-direction: column;
+    width: 348px;
+    border: 1px solid black;
+    margin-left: 50%;
+    margin-top: 80px;
 }
 
 input {
     height: 31px;
     width: 255px;
+    margin-bottom: 15px;
 }
 
 .button {
@@ -41,4 +48,26 @@ input {
     background-color: #3E99ED;
     border-radius: 5px;
     color: white;
+    font-size: 15px;
 }
+
+.formsignup label {
+    width: 261px;
+}
+
+.hr {
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.hr::before,
+.hr::after {
+    border-top: 1px solid;
+    content: "";
+    flex: 1;
+    margin: .05em;
+}
+
+
+/*https://www.matthecat.com/centrer-du-texte-dans-un-hr.html*/
