@@ -1,45 +1,58 @@
-/* #form {
-    border: 0.05rem solid gray;
-    display: flex;
-    flex-direction: column;
-    width: 350px;
-    height: 740px;
-    padding-left: 2rem;
-    padding-right: 1rem;
-
-padding-left: 25px;
-padding-right: 25px;
-
+@font-face {
+    font-family: 'made_sunflower';
+    src: url('fonts/made_sunflower/made_sunflower.otf') format('otf');
 }
-*/
 
 body {
     margin: 0;
+    background-color: #FAFAFA;
 }
 
-.formsignup label,
-input,
+.formsignup input,
 button {
     display: block;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 /* Cadre du formulaire*/
 
-#form {
+form {
+    background-color: white;
     display: flex;
     flex-direction: column;
     width: 348px;
-    border: 1px solid black;
+    border: 1px solid #efefef;
     margin-left: 50%;
-    margin-top: 80px;
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+
+/* texte inscription */
+
+form p {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
+    width: 255px;
+    line-height: 21px;
+    color: #999;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: made_sunflower, Roboto, Helvetica, Arial, sans-serif;
 }
 
 input {
     height: 31px;
     width: 255px;
-    margin-bottom: 15px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    background-color: #FAFAFA;
+    border: 0;
 }
 
 .button {
@@ -49,25 +62,13 @@ input {
     border-radius: 5px;
     color: white;
     font-size: 15px;
+    margin-bottom: 50px;
 }
 
-.formsignup label {
-    width: 261px;
+.formmarg {
+    margin-top: 20px;
 }
 
-.hr {
-    align-items: center;
-    display: flex;
-    text-align: center;
+.last_input {
+    margin-bottom: 30px;
 }
-
-.hr::before,
-.hr::after {
-    border-top: 1px solid;
-    content: "";
-    flex: 1;
-    margin: .05em;
-}
-
-
-/*https://www.matthecat.com/centrer-du-texte-dans-un-hr.html*/
