@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'made_sunflower';
-    src: url('fonts/made_sunflower/made_sunflower.otf') format('otf');
-}
-
 body {
     margin: 0;
     background-color: #FAFAFA;
@@ -42,17 +37,18 @@ form p {
     color: #999;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-weight: bold;
-    font-family: made_sunflower, Roboto, Helvetica, Arial, sans-serif;
+    font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
 }
 
 input {
     height: 31px;
     width: 255px;
-    margin-bottom: 9px;
+    margin-bottom: 7px;
     font-size: 13px;
     background-color: #FAFAFA;
-    border: 0;
+    border: 1px solid #efefef;
+    padding-left: 10px;
 }
 
 .button {
@@ -65,10 +61,50 @@ input {
     margin-bottom: 50px;
 }
 
+
+/* marge top texte "pas encore de compte ?" */
+
 .formmarg {
     margin-top: 20px;
 }
 
+
+/* margin bottom entre dernier input et button */
+
 .last_input {
     margin-bottom: 30px;
+}
+
+
+/* debut mot de passe oublié */
+
+a {
+    font-size: 14px;
+    margin-bottom: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #094786;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: rgb(62, 53, 138);
+}
+
+.mdpf {
+    margin-bottom: 8px;
+}
+
+
+/* mot de passe oublie fin */
+
+
+/* margin bottom premier bouton et mdpf */
+
+.fbutton {
+    margin-bottom: 10px
+}
+
+::placeholder {
+    color: #999999;
 }

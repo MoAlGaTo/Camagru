@@ -7,8 +7,10 @@ function insctiption()
     $lastname_verif = "#^[\.]{1,35}$#";
     $firstname_verif = "#^[\.]{1,35}$#";
     $pseudonym_verif = "#^[\.]+{1,15}$#";
-    $email_verif = "#^[0-9a-zA-Z-_]+@[a-zA-Z-_]{2,}.[a-zA-Z]{2,4}$#";
+    $email_verif = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i";
     $password_verif = "#^([.]*[a-z]+[A-Z]+[0-9]+[-\#_*@\.]+){6,15}$#";
+
+    //https://regex101.com/
 
     $empty_message_alert = NULL;
     $lastname_message_alert = NULL;
@@ -17,9 +19,11 @@ function insctiption()
     $email_message_alert = NULL;
     $password_message_alert = NULL;
     $password_confirm_message_alert = NULL;
+    $pseudo_exist_message_alert = NULL;
+    $email_exist_message_alert = NULL;
 
-    $pseudo_exist = new DataBase;
-    $email_exist = new DataBase;
+    $pseudo_exist = new user;
+    $email_exist = new user;
 
     if (isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['pseudonym']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirm'])) 
     {
@@ -32,19 +36,19 @@ function insctiption()
 
         if (!preg_match($lastname_verif, $lastname))
         {
-            $lastname_message_alert = "Le champ \"Nom\" doit contenir 1 caractère minimum et 35 caractères maximum.";
+            $lastname_message_alert = "Le champ \"nom\" doit contenir 1 caractère minimum et 35 caractères maximum.";
         }
         if (!preg_match($firstname_verif, $firstname))
         {
-            $firstname_message_alert = "Le champ \"Prénom\" doit contenir 1 caractère minimum et 35 caractères maximum.";
+            $firstname_message_alert = "Le champ \"prénom\" doit contenir 1 caractère minimum et 35 caractères maximum.";
         }
         if (!preg_match($pseudonym_verif, $pseudonym))
         {
-            $pseudo_message_alert = "Votre Pseudonyme doit contenir 1 caractère minimum et 15 caractères maximum.";
+            $pseudo_message_alert = "Votre pseudonyme doit contenir 1 caractère minimum et 15 caractères maximum.";
         }
         if (!preg_match($email_verif, $email)) 
         {
-            $email_message_alert = "Format de l'adresse E-mail invalide.";
+            $email_message_alert = "Format de l'adresse e-mail invalide.";
         }
         if (!preg_match($password_verif, $passworduser)) 
         {
@@ -53,6 +57,14 @@ function insctiption()
         if (!($passworduser === $passworduser_confirm)) 
         {
             $password_confirm_message_alert = "Le mot de passe ne correspond pas.";
+        }
+        if (($pseudo_exist->check_pseudo($pseudonym)) != 0)
+        {
+            $pseudo_exist_message_alert = "Le pseudonyme existe déjà";
+        }
+        if (($email_exist->check_email($email)) != 0)
+        {
+            $email_exist_message_alert = "L'adresse e-mail existe déjà";
         }
         if (empty($lastname_message_alert) && empty($firstname_message_alert) && empty($pseudo_message_alert) && empty($email_message_alert) && empty($password_message_alert) && empty($password_confirm_message_alert))
         {
