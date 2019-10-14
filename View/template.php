@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Camagru</title>
-        <link href="../public/<?= $css_link ?>" rel="stylesheet" /> 
+        <link href="../Public/<?= $css_link ?>" rel="stylesheet" /> 
     </head>
         
     <body>

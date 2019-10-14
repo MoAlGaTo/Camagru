@@ -4,13 +4,11 @@ require_once("../Model/DB_users.php");
 
 function insctiption()
 {
-    $lastname_verif = "#^[\.]{1,35}$#";
-    $firstname_verif = "#^[\.]{1,35}$#";
+    $lastname_verif = "#\D{1,}{1,40}#";
+    $firstname_verif = "#\D{1,}{1,40}#";
     $pseudonym_verif = "#^[\.]+{1,15}$#";
     $email_verif = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i";
-    $password_verif = "#^([.]*[a-z]+[A-Z]+[0-9]+[-\#_*@\.]+){6,15}$#";
-
-    //https://regex101.com/
+    $password_verif = "#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])(?=.{6,15})#";
 
     $empty_message_alert = NULL;
     $lastname_message_alert = NULL;
@@ -32,15 +30,17 @@ function insctiption()
         $pseudonym = htmlspecialchars($_POST['pseudonym']);
         $email = htmlspecialchars($_POST['email']);
         $passworduser = htmlspecialchars($_POST['password']);
+        $passworduser = hash('sha256', $passworduser);
         $passworduser_confirm = htmlspecialchars($_POST['password_confirm']);
+        $passworduser_confirm = hash('sha256', $passworduser_confirm);
 
         if (!preg_match($lastname_verif, $lastname))
         {
-            $lastname_message_alert = "Le champ \"nom\" doit contenir 1 caractère minimum et 35 caractères maximum.";
+            $lastname_message_alert = "Le champ \"nom\" doit contenir 1 caractère minimum et 40 caractères maximum.";
         }
         if (!preg_match($firstname_verif, $firstname))
         {
-            $firstname_message_alert = "Le champ \"prénom\" doit contenir 1 caractère minimum et 35 caractères maximum.";
+            $firstname_message_alert = "Le champ \"prénom\" doit contenir 1 caractère minimum et 40 caractères maximum.";
         }
         if (!preg_match($pseudonym_verif, $pseudonym))
         {
@@ -52,9 +52,9 @@ function insctiption()
         }
         if (!preg_match($password_verif, $passworduser)) 
         {
-            $password_message_alert = "Votre mot de passe doit contenir 6 caractère minimum et 15 caractères maximum, et au moins 1 majuscule, 1 chiffre et 1 caractère spécial (\"-\", \"#\", \"_\", \"*\", \"@\", \".\")";
+            $password_message_alert = "Votre mot de passe doit contenir 6 caractère minimum et 15 caractères maximum, et au moins 1 majuscule, 1 chiffre et 1 caractère spécial (\"!\", \"\$\", \"&\", \".\", \"^\", \"%\", \"*\", \"@\".)";
         }
-        if (!($passworduser === $passworduser_confirm)) 
+        if (!($passworduser === $passworduser_confirm))
         {
             $password_confirm_message_alert = "Le mot de passe ne correspond pas.";
         }

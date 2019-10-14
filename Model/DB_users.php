@@ -34,18 +34,18 @@ class user
         return $count;
     }
 
-    public function add_user($lastname, $firstname, $pseudonym, $email, $passworduser)
+    public function add_user($lastname, $firstname, $pseudonym, $email, $password_user)
     {
         $db = new DataBase;
 
-        $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, passworduser)
-        VALUES (:lastname, :firstname, :pseudonym, :email, :passworduser)');
+        $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, password_user)
+        VALUES (:lastname, :firstname, :pseudonym, :email, :password_user)');
 
         $statement->bindValue(':lastname', $lastname, PDO::PARAM_STR);
         $statement->bindValue(':firstname', $firstname, PDO::PARAM_STR);
         $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
-        $statement->bindValue(':passworduser', $passworduser, PDO::PARAM_STR);
+        $statement->bindValue(':password_user', $password_user, PDO::PARAM_STR);
 
         $result = $statement->execute();
 
@@ -69,17 +69,35 @@ class user
         return $result;
     }
 
-    public function edit_password($id, $passworduser)
+    public function edit_password($id, $password_user)
     {
         $db = new DataBase;
 
-        $statement = $db->prepare( 'UPDATE users SET passworduser=:passworduser WHERE ID=:id');
+        $statement = $db->prepare('UPDATE users SET password_user=:password_user WHERE ID=:id');
 
-        $statement->bindValue(':passworduser', $passworduser, PDO::PARAM_STR);
+        $statement->bindValue(':password_user', $password_user, PDO::PARAM_STR);
 
         $result = $statement->execute();
 
         return $result;
     }
+
+    public function account_connect($connector)
+    {
+        $db = new DataBase;
+
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:connector OR pseudonym=:connector');
+
+        $count = $statement->bindValue(':pseudonym', $connector, PDO::PARAM_STR);
+
+        if ($count > 0)
+        {
+            $result = $statement->fetchAll;
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
-?>  
