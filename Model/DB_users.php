@@ -34,18 +34,19 @@ class user
         return $count;
     }
 
-    public function add_user($lastname, $firstname, $pseudonym, $email, $password_user)
+    public function add_user($lastname, $firstname, $pseudonym, $email, $password_user, $confirm_key)
     {
         $db = new DataBase;
 
-        $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, password_user)
-        VALUES (:lastname, :firstname, :pseudonym, :email, :password_user)');
+        $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, password_user, confirm_key)
+        VALUES (:lastname, :firstname, :pseudonym, :email, :password_user, :confirm_key)');
 
         $statement->bindValue(':lastname', $lastname, PDO::PARAM_STR);
         $statement->bindValue(':firstname', $firstname, PDO::PARAM_STR);
         $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
         $statement->bindValue(':password_user', $password_user, PDO::PARAM_STR);
+        $statement->bindValue(':confirm_key', $confirm_key, PDO::PARAM_STR);
 
         $result = $statement->execute();
 

@@ -66,10 +66,39 @@ function insctiption()
         {
             $email_exist_message_alert = "L'adresse e-mail existe déjà";
         }
-        if (empty($lastname_message_alert) && empty($firstname_message_alert) && empty($pseudo_message_alert) && empty($email_message_alert) && empty($password_message_alert) && empty($password_confirm_message_alert))
+        if (empty($lastname_message_alert) && empty($firstname_message_alert) && empty($pseudo_message_alert) && empty($email_message_alert) && empty($password_message_alert) && empty($password_confirm_message_alert) && empty($email_exist_message_alert) && empty($pseudo_exist_message_alert))
         {
+            $key_length = 15;
+            $confirm_key = "";
+
+                for ($i = 1; $i < $key_length; $i++)
+                {
+                    $confirm_key .= mt_rand(0,9);
+                }
+
             $add_user_object = new user;
-            $add_user_object->add_user($lastname, $firstname, $pseudonym, $email, $passworduser);
+            $add_user_object->add_user($lastname, $firstname, $pseudonym, $email, $passworduser, $confirm_key);
+
+            $pseudonym = 'moalga';
+            $confirm_key = 6465464464648;
+            $email = 'm.a.gadacha@hotmail.fr';
+            $headers[] = 'MIME-Version: 1.0';
+            $headers[] = 'Content-type: text/html; charset=utf8';
+
+
+            $mail_subject = "Confirmation de votre compte Camagru";
+            $mail_confirm_message ='
+            <html>
+                <body>
+                    <p>
+                    Bienvenue '.$pseudonym.' ! Vous venez de vous inscrire sur Camagru, et nous vous en remercions. Pour confirmer votre compte, et pouvoir ainsi accéder à votre espace personnel, veuillez cliquer sur lien ci-dessous:<br/><br/><a href="http://localhost:8080/Camagru/View/confirmation.php?pseudo='.urlencode($pseudonym).'&key='.urlencode($confirm_key).'">Cliquez sur ce lien pour confirmer votre compte.</a><br/><br/>
+                    Cet e-mail est généré automatiquement. Merci de ne pas y répondre.<br/><br/>
+                    L\'équipe Camagru ©.
+                    </p>
+                </body>
+            </html>';
+
+            mail($email, $mail_subject ,$mail_confirm_message, implode("\r\n", $headers));
         }
     } 
     else 

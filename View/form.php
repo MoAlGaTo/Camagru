@@ -1,6 +1,5 @@
 <?php ob_start();
 require("../Controller/form_verif.php") ;
-var_dump(isset($empty_message_alert));
 ?>
 
 
