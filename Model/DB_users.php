@@ -8,7 +8,7 @@ class user
     {
         $db = new DataBase;
 
-        $statement = $db->prepare('SELECT pseudonym FROM users WHERE pseudonym=:pseudonym');
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym');
 
         $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
 
@@ -23,7 +23,7 @@ class user
     {
         $db = new DataBase;
 
-        $statement = $db->prepare('SELECT email FROM users WHERE email=:email');
+        $statement = $db->prepare('SELECT * FROM users WHERE email=:email');
 
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
 
@@ -53,6 +53,23 @@ class user
         return $result;
     }
 
+    public function check_confirm_key($confirm_key)
+    {
+        $db = new DataBase;
+
+        $statement = $db->prepare('SELECT * FROM users WHERE confirm_key=:confirm_key');
+
+        $statement->bindValue(':pseudonym', $confirm_key);//, a voir int ou string -> PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        return $count;
+    }
+
+    //fonction verification cle 1 ou 0
+
     public function edit_information($lastname, $firstname, $pseudonym, $email)
     {
         $db = new DataBase;
@@ -77,6 +94,7 @@ class user
         $statement = $db->prepare('UPDATE users SET password_user=:password_user WHERE ID=:id');
 
         $statement->bindValue(':password_user', $password_user, PDO::PARAM_STR);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
 
         $result = $statement->execute();
 
@@ -87,9 +105,13 @@ class user
     {
         $db = new DataBase;
 
-        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:connector OR pseudonym=:connector');
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:connector OR email=:connector');
 
-        $count = $statement->bindValue(':pseudonym', $connector, PDO::PARAM_STR);
+        $statement->bindValue(':connector', $connector, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
 
         if ($count > 0)
         {
@@ -100,5 +122,14 @@ class user
         {
             return false;
         }
+    }
+
+    public function delete_account($pseudonym)
+    {
+        $db = new DataBase;
+
+        $statement = $db->prepare('DELETE FROM users WHERE pseudonym=:pseudonym');
+
+        $statement->execute();
     }
 }

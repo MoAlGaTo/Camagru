@@ -1,0 +1,52 @@
+#content {
+    width: 850px;
+    padding: auto;
+    margin: auto;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #24292e;
+}
+
+p {
+    text-align: center;
+    font-size: 21px;
+    font-family: Tahoma;
+    color: #586069;
+}
+
+#success {
+    border: 1px solid rgb(20, 71, 20);
+    background-color: rgb(143, 175, 143);
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 9px;
+}
+
+#success_p {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(20, 71, 20);
+}
+
+a {
+    font-size: 18px;
+    margin-bottom: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #094786;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(62, 53, 138);
+}

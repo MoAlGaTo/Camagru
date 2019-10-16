@@ -5,7 +5,7 @@ require("../Controller/form_verif.php") ;
 
 <section id="form">
     <form class="formsignup" method="POST" action="../Controller/account_verif.php">
-    <img src="../Public/camagru_logo.png">
+    <img src="../Public/Image/camagru_logo.png">
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
         <?php if (isset($empty_message_alert_connect)){?><p class="alert_message"><?=$empty_message_alert_connect;?></p><?php }?>
         <input class="last_input" type="password" name="password_user" id="password_user" placeholder="Mot de passe"/>
@@ -31,6 +31,7 @@ require("../Controller/form_verif.php") ;
         <input class="last_input" type="password" name="password_confirm" id="password_confirm" placeholder="Confirmation mot de passe">
         <?php if (isset($password_confirm_message_alert)){?> <p class="alert_message"><?=$password_confirm_message_alert;?></p><?php }?>
         <?php if (isset($empty_message_alert)){?> <p class="alert_message"><?=$empty_message_alert;?></p><?php }?>
+        <?php if (isset($failure_message)){?> <p class="alert_message"><?=$failure_message;?></p><?php }?>
         <button class="button" type="submit" name="inscription_butt">S'inscrire</button>
     </form>
 </section> 
