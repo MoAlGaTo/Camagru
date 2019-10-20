@@ -1,6 +1,5 @@
 <?php ob_start();
-require_once("../Controller/form_verif.php");
-?>
+require_once("../Controller/email_verif.php");?>
 
 
 <div id="content">
@@ -14,6 +13,6 @@ require_once("../Controller/form_verif.php");
 
 <?php
 $content = ob_get_clean();
-$css_link = "style_un_verified_email.css";
+$css_link = "style_un_al_verified_email.css";
 require("template.php");
 ?>

@@ -1,10 +1,8 @@
-<?php ob_start();
-require("../Controller/form_verif.php") ;
-?>
+<?php ob_start();?>
 
 
 <section id="form">
-    <form class="formsignup" method="POST" action="../Controller/account_verif.php">
+    <form class="formsignup" method="POST" action="./form.php">
     <img src="../Public/Image/camagru_logo.png">
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
         <?php if (isset($empty_message_alert_connect)){?><p class="alert_message"><?=$empty_message_alert_connect;?></p><?php }?>
@@ -32,7 +30,7 @@ require("../Controller/form_verif.php") ;
         <?php if (isset($password_confirm_message_alert)){?> <p class="alert_message"><?=$password_confirm_message_alert;?></p><?php }?>
         <?php if (isset($empty_message_alert)){?> <p class="alert_message"><?=$empty_message_alert;?></p><?php }?>
         <?php if (isset($failure_message)){?> <p class="alert_message"><?=$failure_message;?></p><?php }?>
-        <button class="button" type="submit" name="inscription_butt">S'inscrire</button>
+        <button class="button" type="submit" name="inscription_butt" value='inscription_btn'>S'inscrire</button>
     </form>
 </section> 
 
@@ -40,4 +38,7 @@ require("../Controller/form_verif.php") ;
 $content = ob_get_clean();
 $css_link = "style_form.css";
 require("template.php");
+
+// require_once("../Controller/form_verif.php");
+// require_once("../Controller/account_verif.php");
 ?>

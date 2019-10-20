@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS users(
     pseudonym VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     passworduser VARCHAR(100) NOT NULL,
-    confirm_key VARCHAR(255) NOT NULL,
-    confirm_account_key INT
+    confirm_key VARCHAR(100) NOT NULL,
+    confirm_account_key INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS pictures(

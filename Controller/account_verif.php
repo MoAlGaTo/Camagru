@@ -4,7 +4,7 @@ require_once("../View/form.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-    if ($_POST['connexion_butt'])
+    if (isset($_POST['connexion_butt']))
     {
         function connect()
         {
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $connector_message_alert = NULL;
             $password_message_alert_connect = NULL;
 
-            $pseudo_mail_exist = new user;
+            $verification_object = new user;
 
             if (isset($_POST['pseudo_mail']) && isset($_POST['password_user']))
             {
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 $password = htmlspecialchars($_POST['password_user']);
                 $password = hash('sha256', $password);
 
-                $identity = $pseudo_mail_exist->account_connect($pseudo_mail);
+                $identity = $verification_object->account_connect($pseudo_mail);
 
                 if ($identity)
                 {
