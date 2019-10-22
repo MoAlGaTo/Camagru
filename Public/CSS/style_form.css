@@ -109,3 +109,9 @@ a:hover {
 ::placeholder {
     color: #999999;
 }
+
+.update_info {
+    width: 348px;
+    margin-top: 250px;
+    margin-left: 33%;
+}

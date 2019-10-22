@@ -36,6 +36,22 @@ class user
         return $count;
     }
 
+    public function check_password($id)
+    {
+        // $db = new DataBase;
+        $db = connexion();
+
+        $statement = $db->prepare('SELECT * FROM users WHERE id_user=:id');
+
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+		$result = $statement->fetch();
+		
+		return $result['passworduser'];
+    }
+
     public function add_user($lastname, $firstname, $pseudonym, $email, $password_user, $confirm_key)
     {
         // $db = new DataBase;
@@ -167,6 +183,38 @@ class user
         {
             return $count;
         }
+    }
+
+    public function make_confirm_key()
+    {
+        $key_length = 15;
+        $confirm_key = "";
+
+        for ($i = 1; $i < $key_length; $i++)
+        {
+            $confirm_key .= mt_rand(0, 9);
+        }
+        return $confirm_key;
+    }
+
+    public function send_email($email, $pseudonym, $confirm_key)
+    {
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=utf8';
+        $mail_subject = "Confirmation de votre compte Camagru";
+        $mail_confirm_message = '
+            <html>
+                <body>
+                    <p>
+                    Bienvenue ' . $pseudonym . ' ! Vous venez de vous inscrire sur Camagru, et nous vous en remercions. Pour confirmer votre compte, et pouvoir ainsi accéder à votre espace personnel, veuillez cliquer sur lien ci-dessous:<br/><br/><a href="http://localhost:8080/Camagru/Controller/email_verif.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour confirmer votre compte.</a><br/><br/>
+                    Cet e-mail est généré automatiquement. Merci de ne pas y répondre.<br/><br/>
+                    L\'équipe Camagru ©.
+                    </p>
+                </body>
+            </html>';
+        $result = mail($email, $mail_subject, $mail_confirm_message, implode("\r\n", $headers));
+
+        return $result;
     }
 
     public function delete_account($pseudonym)

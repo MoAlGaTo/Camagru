@@ -1,5 +1,4 @@
-<?php ob_start();
-require_once("../Controller/email_verif.php");?>
+<?php ob_start();?>
 
 
 <div id="content">
