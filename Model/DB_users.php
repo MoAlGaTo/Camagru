@@ -74,14 +74,15 @@ class user
         return $result;
     }
 
-    public function check_confirm_key($confirm_key)
+    static function check_confirm_key($pseudonym, $confirm_key)
     {
         // $db = new DataBase;
         $db = connexion();
 
-        $statement = $db->prepare('SELECT * FROM users WHERE confirm_key=:confirm_key');
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym AND confirm_key=:confirm_key');
 
         $statement->bindValue(':confirm_key', $confirm_key, PDO::PARAM_STR);
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
 
         $statement->execute();
 
@@ -90,15 +91,14 @@ class user
         return $count;
     }
 
-    public function check_confirm_account_key($pseudonym, $confirm_account_key)
+    static function check_confirm_account_key($pseudonym)
     {
         // $db = new DataBase;
         $db = connexion();
 
-        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym AND confirm_account_key=:confirm_account_key');
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym AND confirm_account_key=0');
 
         $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
-        $statement->bindValue(':confirm_account_key', $confirm_account_key, PDO::PARAM_INT);
 
         $statement->execute();
 
@@ -107,7 +107,7 @@ class user
         return $result;
     }
 
-    public function set_confirm_account_key($pseudonym)
+    static function set_confirm_account_key($pseudonym)
     {
         // $db = new DataBase;
         $db = connexion();
@@ -161,7 +161,7 @@ class user
         return $result;
     }
 
-    public function account_connect($connector)
+    static function account_connect($connector)
     {
         // $db = new DataBase;
         $db = connexion();

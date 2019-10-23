@@ -7,7 +7,7 @@
 <section id="form">
 
     <!-- connexion -->
-    <form class="formsignup" method="POST" action="./form.php">
+    <form class="formsignup" method="POST" action="">
     <img src="../Public/Image/camagru_logo.png">
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
         <?php if (isset($connector_message_alert)){?> <p class="alert_message"><?=$connector_message_alert;?></p><?php }?>

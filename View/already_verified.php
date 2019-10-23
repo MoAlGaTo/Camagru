@@ -1,5 +1,9 @@
 <?php ob_start();
-require_once("../Controller/email_verif.php");?>
+if (!empty($_GET['pseudo']))
+{
+    $pseudonym = htmlspecialchars($_GET['pseudo']);
+}
+?>
 
 <div id="content">
     <img src="../Public/Image/camagru_logo.png">
