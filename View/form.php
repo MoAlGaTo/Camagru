@@ -1,13 +1,29 @@
 <?php ob_start();
-    require_once("../Controller/form_verif.php");
-    require_once("../Controller/account_verif.php");
+	// Messages d'erreur inscription
+	$empty_message_alert = NULL;
+	$lastname_message_alert = NULL;
+	$firstname_message_alert = NULL;
+	$pseudo_message_alert = NULL;
+	$email_message_alert = NULL;
+	$password_message_alert = NULL;
+	$password_confirm_message_alert = NULL;
+	$pseudo_exist_message_alert = NULL;
+	$email_exist_message_alert = NULL;
+	$failure_message = NULL;
+
+	// Mesages d'erreur connexion
+	$empty_message_alert_connect = NULL;
+	$connector_message_alert = NULL;
+	$password_message_alert_connect = NULL;
+require_once("../Controller/account_verif.php");
+
 ?>
 
 
 <section id="form">
 
     <!-- connexion -->
-    <form class="formsignup" method="POST" action="">
+    <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
     <img src="../Public/Image/camagru_logo.png">
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
         <?php if (isset($connector_message_alert)){?> <p class="alert_message"><?=$connector_message_alert;?></p><?php }?>
@@ -19,12 +35,12 @@
     </form>
 
     <!-- inscription -->
-    <form class="formsignup formmarg" method="POST" action="../Controller/form_verif.php">
+    <form class="formsignup formmarg" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <p>Pas encore de compte ? Inscrivez-vous pour voir les photos montages de vos amis.</p>
         <input type="text" name="lastname" id="lastname" placeholder="Nom"/>
-        <?php if (isset($name_message_alert)){?> <p class="alert_message"><?=$lastname_message_alert;?></p><?php }?>
+        <?php if (isset($lastname_message_alert)){?> <p class="alert_message"><?=$lastname_message_alert;?></p><?php }?>
         <input type="text" name="firstname" id="firstname" placeholder="Prénom"/>
-        <?php if (isset($name_message_alert)){?> <p class="alert_message"><?=$firstname_message_alert;?></p><?php }?>
+        <?php if (isset($firstname_message_alert)){?> <p class="alert_message"><?=$firstname_message_alert;?></p><?php }?>
         <input type="text" name="pseudonym" id="pseudonym" placeholder="Pseudonyme">
         <?php if (isset($pseudo_message_alert)){?> <p class="alert_message"><?=$pseudo_message_alert;?></p><?php }?>
         <?php if (isset($pseudo_exist_message_alert)){?> <p class="alert_message"><?=$pseudo_exist_message_alert;?></p><?php }?>

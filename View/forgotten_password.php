@@ -1,10 +1,10 @@
 <?php ob_start();
 // Message d'erreurs modification mot de passe
-$password_message_alert = NULL;
-$password_confirm_message_alert = NULL;
-$password_exist_message_alert = NULL;
-$result_message = NULL;
-require_once("../Controller/update_password_verif.php");
+// $password_message_alert = NULL;
+// $password_confirm_message_alert = NULL;
+// $password_exist_message_alert = NULL;
+// $result_message = NULL;
+//require_once("../Controller/update_password_verif.php");
 ?>
 
 <!-- modification mot de passe -->

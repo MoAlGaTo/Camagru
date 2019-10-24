@@ -115,3 +115,10 @@ a:hover {
     margin-top: 250px;
     margin-left: 33%;
 }
+
+.alert_message {
+    color: red;
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+}

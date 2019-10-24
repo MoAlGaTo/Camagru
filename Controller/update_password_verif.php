@@ -1,4 +1,5 @@
 <?php
+require_once("../Model/DB_users.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -6,19 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $password_verif = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.;?\":{}\[\]|<>])(?=.{6,50}$)/";
 
-        $password_message_alert = NULL;
-        $password_confirm_message_alert = NULL;
-        $password_exist_message_alert = NULL;
-        $result_message = NULL;
-
-        $update_user_object = new user;
-
-        if (isset($_POST['password']) && isset($_POST['password_confirm']))
+        if (!empty($_POST['password']) && !empty($_POST['password_confirm']))
         {
             $passworduser = htmlspecialchars($_POST['password']);
             $passworduser_confirm = htmlspecialchars($_POST['password_confirm']);
-            $id = $_SESSION['id_user'];
-			
+            $id = $_SESSION['id_user'];	
             
             if (!preg_match($password_verif, $passworduser))
             {
@@ -31,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
             $passworduser = hash('sha256', $passworduser);
 
-            if (($update_user_object->check_password($id)) === $passworduser)
+            if ((user::check_password($id)) === $passworduser)
             {
                 $password_exist_message_alert = "Votre mot de passe correspond à l'ancien. Veuillez le modifer.";
             }
             if (empty($password_message_alert) && empty($password_confirm_message_alert) && empty($password_exist_message_alert))
             {
-                if ($update_user_object->edit_password($passworduser, $id))
+                if (user::edit_password($passworduser, $id))
                 {
                     $result_message = "Votre mot de passe a bien été modifié.";
                 }

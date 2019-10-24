@@ -36,7 +36,7 @@ class user
         return $count;
     }
 
-    public function check_password($id)
+    static function check_password($id)
     {
         // $db = new DataBase;
         $db = connexion();
@@ -144,7 +144,7 @@ class user
         return $result;
     }
 
-    public function edit_password($password_user, $id)
+    static function edit_password($password_user, $id)
     {
         // $db = new DataBase;
         $db = connexion();
