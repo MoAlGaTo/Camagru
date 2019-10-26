@@ -19,7 +19,7 @@ require_once("../Controller/update_info_verif.php")
         <?php if (isset($email_exist_message_alert)) { ?> <p class="alert_message"><?= $email_exist_message_alert; ?></p><?php } ?>
         <?php if (isset($empty_message_alert)) { ?> <p class="alert_message"><?= $empty_message_alert; ?></p><?php } ?>
         <?php if (isset($result_message)) { ?> <p class="alert_message"><?= $result_message; ?></p><?php } ?>
-        <button class="button" type="submit" name="update_butt" value='inscription_btn'>Modifier</button>
+        <button class="button" type="submit" name="update_butt">Modifier</button>
     </form>
 </section>
 

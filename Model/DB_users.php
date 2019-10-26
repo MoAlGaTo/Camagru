@@ -4,6 +4,7 @@ require_once("DB_connect.php");
 
 class user
 {
+    // Verifie si le pseudonym est existant
     public function check_pseudo($pseudonym)
     {
         // $db = new DataBase;
@@ -19,7 +20,7 @@ class user
 
         return $count;
     }
-
+    // Verifie si le mail est existant
     public function check_email($email)
     {
         // $db = new DataBase;
@@ -31,19 +32,19 @@ class user
 
         $statement->execute();
 
-        $count = $statement->rowCount();
+        $result = $statement->fetch();
 
-        return $count;
+        return $result;
     }
-
-    static function check_password($id)
+    // Verifie si le mot de passe est existant
+    static function check_password($pseudonym)
     {
         // $db = new DataBase;
         $db = connexion();
 
-        $statement = $db->prepare('SELECT * FROM users WHERE id_user=:id');
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym');
 
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
 
         $statement->execute();
 
@@ -51,7 +52,7 @@ class user
 		
 		return $result['passworduser'];
     }
-
+    // Ajoute un nouveau user
     public function add_user($lastname, $firstname, $pseudonym, $email, $password_user, $confirm_key)
     {
         // $db = new DataBase;
@@ -73,7 +74,7 @@ class user
 
         return $result;
     }
-
+    // Verifie la correspondance du pseudo et de la clé generee pour le mail de confirmation
     static function check_confirm_key($pseudonym, $confirm_key)
     {
         // $db = new DataBase;
@@ -90,7 +91,7 @@ class user
 
         return $count;
     }
-
+    // Verifie si la clé d'activation est a 0
     static function check_confirm_account_key($pseudonym)
     {
         // $db = new DataBase;
@@ -106,7 +107,7 @@ class user
 
         return $result;
     }
-
+    // Active la clé du compte en la mettant a 1
     static function set_confirm_account_key($pseudonym)
     {
         // $db = new DataBase;
@@ -122,7 +123,57 @@ class user
 
         return $result;
     }
+    // Verifie la correspondance du pseudo et la cle de du mail du mot de passe oublie
+    static function check_confirm_key_password($pseudonym, $confirm_key)
+    {
+        // $db = new DataBase;
+        $db = connexion();
 
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym AND confirm_key_password=:confirm_key');
+
+        $statement->bindValue(':confirm_key', $confirm_key, PDO::PARAM_STR);
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        return $count;
+    }
+    // Verifie si la cle du mot de passe oublie est a 1 ou 0
+    static function check_confirm_account_key_password($pseudonym)
+    {
+        // $db = new DataBase;
+        $db = connexion();
+
+        $statement = $db->prepare('SELECT * FROM users WHERE pseudonym=:pseudonym');
+
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_INT);
+
+        $statement->execute();
+
+		$result = $statement->fetch();
+		
+		return $result['confirm_account_key_password'];
+    }
+     // Active ou desactive la cle du mot de passe
+     static function set_confirm_password_key($numberSet, $pseudonym)
+     {
+         // $db = new DataBase;
+         $db = connexion();
+ 
+         $statement = $db->prepare('UPDATE users SET confirm_account_key_forgotten_password=:numberSet WHERE pseudonym=:pseudonym');
+ 
+         $statement->bindValue(':numberSet', $numberSet, PDO::PARAM_INT);
+         $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
+ 
+         $statement->execute();
+ 
+         $result = $statement->rowCount();
+ 
+         return $result;
+     }
+    // Modifie les infos d'un user connecte
     public function edit_information($lastname, $firstname, $pseudonym, $email, $id)
     {
         // $db = new DataBase;
@@ -143,7 +194,7 @@ class user
 
         return $result;
     }
-
+    // Modifie le mot de passe d'un user connecte ou ayant oublie sont mot de passe
     static function edit_password($password_user, $id)
     {
         // $db = new DataBase;
@@ -160,7 +211,7 @@ class user
 
         return $result;
     }
-
+    // Verifie le user en verifiant son identifiant et retourne la ligne pour verifier ensuite le mot de passe 
     static function account_connect($connector)
     {
         // $db = new DataBase;
@@ -172,19 +223,11 @@ class user
 
         $statement->execute();
 
-        $count = $statement->rowCount();
+        $result = $statement->fetch();
 
-        if ($count)
-        {
-            $result = $statement->fetch();
-            return $result;
-        }
-        else
-        {
-            return $count;
-        }
+        return $result;
     }
-
+    // Genre une cle de confirmation pour le mail de confirmation ou le mot de passe oublié
     public function make_confirm_key()
     {
         $key_length = 15;
@@ -196,7 +239,7 @@ class user
         }
         return $confirm_key;
     }
-
+    // Envoi le mail de confirmation avec le pseudo et la cle generee
     public function send_email($email, $pseudonym, $confirm_key)
     {
         $headers[] = 'MIME-Version: 1.0';
@@ -216,7 +259,45 @@ class user
 
         return $result;
     }
+    // Envoi un mail pour reinitialiser son mot de passe oublie
+    public function send_mail_forgotten_password($pseudonym, $email, $confirm_key)
+    {
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=utf8';
+        $mail_subject = "Réinitialisation de votre mot de passe Camagru";
+        $mail_confirm_message = '
+            <html>
+                <body>
+                    <p>
+                    Bonjour ' . $pseudonym . ' ! Voici le lien pour réinitialiser le mot de passe de votre compte Camagru:<br/><br/><a href="http://localhost:8080/Camagru/Controller/email_password_verif.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour réinitialiser votre mot de passe.</a><br/><br/>
+                    Cet e-mail est généré automatiquement. Merci de ne pas y répondre.<br/><br/>
+                    L\'équipe Camagru ©.
+                    </p>
+                </body>
+            </html>';
 
+        $result = mail($email, $mail_subject, $mail_confirm_message, implode("\r\n", $headers));
+
+        return $result;
+    }
+    // Met la cle de confirmation genere du mot de passe oublie
+    public function update_confirm_key_password($confirm_key, $pseudonym)
+    {
+        // $db = new DataBase;
+        $db = connexion();
+
+        $statement = $db->prepare('UPDATE users SET confirm_key_password=:confirm_key WHERE pseudonym=:pseudonym');
+
+        $statement->bindValue(':confirm_key', $confirm_key, PDO::PARAM_STR);
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $result = $statement->rowCount();
+
+        return $result;
+    }
+    //  Supprime le compte si le mail n'a pas pu etre envoye
     public function delete_account($pseudonym)
     {
         // $db = new DataBase;

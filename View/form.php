@@ -31,7 +31,7 @@ require_once("../Controller/account_verif.php");
         <?php if (isset($password_message_alert_connect)){?> <p class="alert_message"><?=$password_message_alert_connect;?></p><?php }?>
         <?php if (isset($empty_message_alert_connect)){?><p class="alert_message"><?=$empty_message_alert_connect;?></p><?php }?>
         <button class="button fbutton" type="submit" name="connexion_butt">Se Connecter</button>
-       <p class="mdpf"><a href="">Mot de passe oublié ?</a></p>
+       <p class="mdpf"><a href="http://localhost:8080/Camagru/View/forgotten_password.php">Mot de passe oublié ?</a></p>
     </form>
 
     <!-- inscription -->

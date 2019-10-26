@@ -12,8 +12,20 @@ else if ( session_status() === PHP_SESSION_DISABLED)
 {
     echo 'DISABLED';
 }
+echo '<br/>';
 echo "Selem Aleykoum ".$_SESSION['pseudonym']." !";
-session_destroy();
+echo '<br/>';
+echo $_SESSION['id_user'];
+echo '<br/>';
+echo $_SESSION['lastname'];
+echo '<br/>';
+echo $_SESSION['firstname'];
+echo '<br/>';
+echo $_SESSION['pseudonym'];
+echo '<br/>';
+echo $_SESSION['email'];
+echo '<br/>';
+//session_destroy();
 if (session_status() === PHP_SESSION_NONE)
 {
     echo 'NONE';

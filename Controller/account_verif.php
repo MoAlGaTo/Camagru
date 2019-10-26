@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $empty_message_alert = "Tous les champs doivent être remplis.";
         }
     }
-    else if (isset($_POST['connexion_butt']) && empty($_POST['inscription_butt']))
+    else if (isset($_POST['connexion_butt']))
     {
 
         if (!empty($_POST['pseudo_mail']) && !empty($_POST['password_user']))
@@ -103,13 +103,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 if ($password === $identity['passworduser'])
                 {
-                    session_start();
-                    $_SESSION['lastname'] = $identity['lastname'];
-                    $_SESSION['firstname'] = $identity['firstname'];
-                    $_SESSION['pseudonym'] = $identity['pseudonym'];
-                    $_SESSION['email'] = $identity['email'];
-                    header('location: ../View/admin_page.php');
-                    exit;
+                    if ($identity['confirm_account_key'] == 1)
+                    {
+                        session_start();
+                        $_SESSION['id_user'] = $identity['id_user'];
+                        $_SESSION['lastname'] = $identity['lastname'];
+                        $_SESSION['firstname'] = $identity['firstname'];
+                        $_SESSION['pseudonym'] = $identity['pseudonym'];
+                        $_SESSION['email'] = $identity['email'];
+                        header('location: ../View/admin_page.php');
+                        exit;
+                    }
+                    else
+                    {
+                        $password_message_alert_connect = "Merci de confirmer votre compte via l'email de confimation qui vous a été envoyé, avant de pouvoir vous connecter.";
+                    }
                 }
                 else
                 {
