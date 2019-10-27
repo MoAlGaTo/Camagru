@@ -3,10 +3,14 @@ if (!empty($_GET['pseudo']))
 {
     $pseudonym = htmlspecialchars($_GET['pseudo']);
 }
+else
+{
+    $pseudonym = NULL;
+}
 ?>
 
 <div id="content">
-    <img src="../Public/Image/camagru_logo.png">
+    <a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
     <div id="success"><p id="success_p">√ Votre mot de passe a bien été modifié</p></div>
     <h1>La modification a bien été prise en compte <?= $pseudonym?>.</h1>
     <p>Vous pouvez maintenant avoir de nouveau accès à votre compte Camagru.</p>

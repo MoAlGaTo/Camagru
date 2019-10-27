@@ -162,7 +162,7 @@ class user
          // $db = new DataBase;
          $db = connexion();
  
-         $statement = $db->prepare('UPDATE users SET confirm_account_key_forgotten_password=:numberSet WHERE pseudonym=:pseudonym');
+         $statement = $db->prepare('UPDATE users SET confirm_account_key_password=:numberSet WHERE pseudonym=:pseudonym');
  
          $statement->bindValue(':numberSet', $numberSet, PDO::PARAM_INT);
          $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
@@ -195,15 +195,15 @@ class user
         return $result;
     }
     // Modifie le mot de passe d'un user connecte ou ayant oublie sont mot de passe
-    static function edit_password($password_user, $id)
+    static function edit_password($password_user, $pseudonym)
     {
         // $db = new DataBase;
         $db = connexion();
 
-        $statement = $db->prepare('UPDATE users SET passworduser=:password_user WHERE id_user=:id');
+        $statement = $db->prepare('UPDATE users SET passworduser=:password_user WHERE pseudonym=:pseudonym');
 
         $statement->bindValue(':password_user', $password_user, PDO::PARAM_STR);
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':pseudonym', $pseudonym, PDO::PARAM_STR);
 
         $statement->execute();
 
@@ -269,7 +269,7 @@ class user
             <html>
                 <body>
                     <p>
-                    Bonjour ' . $pseudonym . ' ! Voici le lien pour réinitialiser le mot de passe de votre compte Camagru:<br/><br/><a href="http://localhost:8080/Camagru/Controller/email_password_verif.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour réinitialiser votre mot de passe.</a><br/><br/>
+                    Bonjour ' . $pseudonym . ' ! Voici le lien pour réinitialiser le mot de passe de votre compte Camagru:<br/><br/><a href="http://localhost:8080/Camagru/View/update_forgotten_password.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour réinitialiser votre mot de passe.</a><br/><br/>
                     Cet e-mail est généré automatiquement. Merci de ne pas y répondre.<br/><br/>
                     L\'équipe Camagru ©.
                     </p>

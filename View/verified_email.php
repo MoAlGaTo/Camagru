@@ -3,10 +3,14 @@ if (!empty($_GET['pseudo']))
 {
     $pseudonym = htmlspecialchars($_GET['pseudo']);
 }
+else
+{
+    $pseudonym = NULL;
+}
 ?>
 
 <div id="content">
-<img src="../Public/Image/camagru_logo.png">
+<a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
 <div id="success"><p id="success_p">√ Votre e-mail a bien été verifié</p></div>
 <h1>Félicitations <?= $pseudonym?> !</h1>
 <p>Vous pouvez maintenant avoir accès à votre compte Camagru.</p>

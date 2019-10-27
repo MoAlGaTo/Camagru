@@ -5,7 +5,7 @@ require_once("../Controller/update_info_verif.php")
 <!-- modification information -->
 <section class="update_info">
     <form class="formsignup formmarg" method="POST" action="./update_info.php">
-        <img src="../Public/Image/camagru_logo.png">
+        <a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
         <p>Mettre à jour ses informations</p>
         <input type="text" name="lastname" id="lastname" value="<? $_SESSION['lastname']?>" placeholder="Nom" />
         <?php if (isset($lastname_message_alert)) { ?> <p class="alert_message"><?= $lastname_message_alert; ?></p><?php } ?>

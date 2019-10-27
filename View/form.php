@@ -24,7 +24,7 @@ require_once("../Controller/account_verif.php");
 
     <!-- connexion -->
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
-    <img src="../Public/Image/camagru_logo.png">
+    <a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
         <?php if (isset($connector_message_alert)){?> <p class="alert_message"><?=$connector_message_alert;?></p><?php }?>
         <input class="last_input" type="password" name="password_user" id="password_user" placeholder="Mot de passe"/>

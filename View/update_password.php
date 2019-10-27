@@ -11,7 +11,7 @@ require_once("../Controller/update_password_verif.php");
 <!-- modification mot de passe -->
 <section class="update_info">
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
-        <img src="../Public/Image/camagru_logo.png">
+        <a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
         <p>Modifier son mot de passe</p>
         <input type="password" name="password" id="password" placeholder="Nouveau mot de passe">
         <?php if (isset($password_message_alert)){?> <p class="alert_message"><?=$password_message_alert;?></p><?php }?>
@@ -20,6 +20,7 @@ require_once("../Controller/update_password_verif.php");
         <?php if (isset($empty_message_alert)){?> <p class="alert_message"><?=$empty_message_alert;?></p><?php }?>
         <?php if (isset($result_message)){?> <p class="alert_message"><?=$result_message;?></p><?php }?>
         <button class="button" type="submit" name="modif_butt">Modifier</button>
+    </form>
 <section>
 
 <?php
