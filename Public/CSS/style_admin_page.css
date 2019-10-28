@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'prancer_deer';
+    src: url('../Fonts/prancer_deer/Prancer_Deer.otf') format('eot'), url('../Fonts/prancer_deer/Prancer_Deer.ttf') format('truetype');
+}
+
 body {
     margin: 0;
     background-color: #192733;
@@ -16,6 +21,7 @@ li {
     font-size: 30px;
     padding-left: 45px;
     font-family: Verdana, sans-serif;
+    margin-bottom: 15px;
 }
 
 a {
@@ -31,12 +37,29 @@ a:hover {
     color: #3E99ED;
 }
 
-p {
+.welcome_message {
+    font-family: prancer_deer;
     text-align: center;
     color: rgb(72, 73, 78);
-    font-size: 23px;
+    font-size: 30px;
 }
 
 img {
     margin-right: 15px;
+}
+
+.sign_out {
+    color: rgb(136, 38, 38);
+    font-size: 18px;
+}
+
+.sign_out:hover {
+    color: rgb(224, 20, 20);
+}
+
+.logo {
+    display: block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
 }

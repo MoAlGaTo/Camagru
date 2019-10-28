@@ -4,13 +4,13 @@ ob_start();
 ?>
 
 <ul>
-    <p>Bienvenue <?= $_SESSION['pseudonym'] ?></p>
+    <img class="logo" src="../Public/Image/camagru_logo2.png">
+    <p class="welcome_message">Bienvenue <?= $_SESSION['pseudonym'] ?> !</p>
     <li><a class="page" href=""><img src="../Public/Image/home_blue.png">Accueil</a></li>
     <li><a href=""><img src="../Public/Image/mygallery_white.png">Ma galerie</a></li>
     <li><a href=""><img src="../Public/Image/takepicture_white.png">Photo</a></li>
     <li><a href=""><img src="../Public/Image/profil_white.png">Profil</a></li>
-    <li></li>
-    <li></li>
+    <li><a class="sign_out" href=""><img src="../Public/Image/logout_red.png">Se déconnecter</a></li>
 </ul>
 
 <?php

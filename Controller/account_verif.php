@@ -58,8 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 $passworduser = hash('sha256', $passworduser);
                 $confirm_key = $add_user_object->make_confirm_key();
+                $confirm_key_password = $add_user_object->make_confirm_key();
 
-                if ($add_user_object->add_user($lastname, $firstname, $pseudonym, $email, $passworduser, $confirm_key))
+                if ($add_user_object->add_user($lastname, $firstname, $pseudonym, $email, $passworduser, $confirm_key, 0, $confirm_key_password, 0))
                 {
                     if ($add_user_object->send_email($email, $pseudonym, $confirm_key))
                     {
