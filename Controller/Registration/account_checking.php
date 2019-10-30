@@ -1,5 +1,5 @@
 <?php
-require_once("../Model/DB_users.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_users.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     if ($add_user_object->send_email($email, $pseudonym, $confirm_key))
                     {
-                        header("Location: http://localhost:8080/Camagru/View/unverified_email.php");
+                        header("Location: /Camagru/View/User/Registration/unverified_email.php");
                     }
                     else
                     {
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                         $_SESSION['firstname'] = $identity['firstname'];
                         $_SESSION['pseudonym'] = $identity['pseudonym'];
                         $_SESSION['email'] = $identity['email'];
-                        header('location: ../View/admin_page.php');
+                        header("location: /Camagru/View/Admin/home_page.php");
                         exit;
                     }
                     else
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     else
     {
-        header("location: http://localhost:8080/Camagru/View/404_error.html");
+        header("location: /Camagru/View/404_error.html");
         exit;
     }
 }

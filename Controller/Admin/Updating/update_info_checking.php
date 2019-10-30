@@ -1,5 +1,5 @@
 <?php
-require_once("../Model/DB_users.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_users.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -8,15 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $name_verif = "/^[^!@#$%^&*(),.;?\":{}\[\]|<>0-9\t]{1,40}$/";
         $pseudonym_verif = "/^.{1,15}$/";
         $email_verif = "/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i";
-
-        $empty_message_alert = NULL;
-        $lastname_message_alert = NULL;
-        $firstname_message_alert = NULL;
-        $pseudo_message_alert = NULL;
-        $email_message_alert = NULL;
-        $pseudo_exist_message_alert = NULL;
-        $email_exist_message_alert = NULL;
-        $result_message = NULL;
 
         $update_user_object = new user;
 
@@ -71,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     else
     {
-        header("location: http://localhost:8080/Camagru/View/404_error.html");
+        header("location: /Camagru/View/404_error.html");
     }
 }
 ?>

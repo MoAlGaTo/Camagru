@@ -1,5 +1,5 @@
 <?php
-require_once("../Model/DB_users.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_users.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                     }
                     if ($verif_object->send_mail_forgotten_password($pseudonym, $email, $confirm_key))
                     {
-                        header("location: http://localhost:8080/Camagru/View/forgot_password_sent.php");
+                        header("location: /Camagru/View/User/Forgotten_Password/forgpass_email_sent.php");
                         exit;
                     }
                     else
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     else
     {
-        header("location: http://localhost:8080/Camagru/View/404_error.html");
+        header("location: /Camagru/View/404_error.html");
     }
 }
 

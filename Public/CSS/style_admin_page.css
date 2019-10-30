@@ -13,19 +13,20 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    border: solid rgba(255, 255, 255, 0.678) 1px;
 }
 
 li {
     width: 300px;
     height: 50px;
     font-size: 30px;
-    padding-left: 45px;
-    font-family: Verdana, sans-serif;
-    margin-bottom: 15px;
+    padding-left: 35px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
 }
 
 a {
-    color: #FFFFFF;
+    color: rgba(255, 255, 255, 0.678);
     text-decoration: none;
 }
 
@@ -42,10 +43,11 @@ a:hover {
     text-align: center;
     color: rgb(72, 73, 78);
     font-size: 30px;
+    margin-top: 0;
 }
 
 img {
-    margin-right: 15px;
+    margin-right: 13px;
 }
 
 .sign_out {
@@ -62,4 +64,19 @@ img {
     width: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+.profil {
+    display: flex;
+}
+
+.datas {
+    border: none;
+    display: flex;
+    width: 1100px;
+}
+
+.datas li {
+    font-size: 20px;
+    width: 600px;
 }

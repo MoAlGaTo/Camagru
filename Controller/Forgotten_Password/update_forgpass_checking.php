@@ -1,5 +1,5 @@
 <?php
-require_once("../Model/DB_users.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_users.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -9,12 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $confirm_key = htmlspecialchars($_GET['key']);
         $password_verif = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.;?\":{}\[\]|<>])(?=.{6,50}$)/";
         
-        if (empty($pseudonym) || empty($confirm_key))
-        {
-            header("location: http://localhost:8080/Camagru/View/404_error.html");
-        }
         if (!empty($_POST['password']) && !empty($_POST['password_confirm']))
         {
+            if (empty($pseudonym) || empty($confirm_key))
+            {
+                header("location: /Camagru/View/404_error.html");
+            }
             $passworduser = htmlspecialchars($_POST['password']);
             $passworduser_confirm = htmlspecialchars($_POST['password_confirm']);
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                         {
                             if (user::set_confirm_password_key(1, $pseudonym))
                             {
-                                header("location: http://localhost:8080/Camagru/View/forgot_password_updated.php?pseudo=$pseudonym");
+                                header("location: /Camagru/View/User/Forgotten_Password/forgpass_updated.php?pseudo=$pseudonym");
                             }
                             else
                             {
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 }
                 else
                 {
-                    header("location: http://localhost:8080/Camagru/View/404_error.html");
+                    header("location: /Camagru/View/404_error.html");
                 }
             }
         }
@@ -73,6 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     else
     {
-        header("location: http://localhost:8080/Camagru/View/404_error.html");
+        header("location: /Camagru/View/404_error.html");
     }
 }

@@ -1,4 +1,10 @@
-<?php ob_start();
+<?php
+session_start();
+ob_start();
+if (!empty($_SESSION))
+{
+    header("location: /Camagru/View/Admin/home_page.php");
+}
 	// Messages d'erreur inscription
 	$empty_message_alert = NULL;
 	$lastname_message_alert = NULL;
@@ -15,23 +21,21 @@
 	$empty_message_alert_connect = NULL;
 	$connector_message_alert = NULL;
 	$password_message_alert_connect = NULL;
-require_once("../Controller/account_verif.php");
-
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Registration/account_checking.php");
 ?>
-
 
 <section id="form">
 
     <!-- connexion -->
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
-    <a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
+    <a href="/Camagru/View/form.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
         <?php if (isset($connector_message_alert)){?> <p class="alert_message"><?=$connector_message_alert;?></p><?php }?>
         <input class="last_input" type="password" name="password_user" id="password_user" placeholder="Mot de passe"/>
         <?php if (isset($password_message_alert_connect)){?> <p class="alert_message"><?=$password_message_alert_connect;?></p><?php }?>
         <?php if (isset($empty_message_alert_connect)){?><p class="alert_message"><?=$empty_message_alert_connect;?></p><?php }?>
         <button class="button fbutton" type="submit" name="connexion_butt">Se Connecter</button>
-       <p class="mdpf"><a href="http://localhost:8080/Camagru/View/forgotten_password.php">Mot de passe oublié ?</a></p>
+       <p class="mdpf"><a href="/Camagru/View/User/Forgotten_Password/forgpass_get_email.php">Mot de passe oublié ?</a></p>
     </form>
 
     <!-- inscription -->
@@ -60,4 +64,5 @@ require_once("../Controller/account_verif.php");
 <?php
 $content = ob_get_clean();
 $css_link = "style_form.css";
-require("template.php");?>
+require($_SERVER['DOCUMENT_ROOT']."/Camagru/View/template.php");
+?>

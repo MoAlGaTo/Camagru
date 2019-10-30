@@ -1,5 +1,5 @@
 <?php
-require_once("../Model/DB_users.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_users.php");
 
 if (!empty($_GET['pseudo']) && !empty($_GET['key']))
 {
@@ -12,30 +12,30 @@ if (!empty($_GET['pseudo']) && !empty($_GET['key']))
         {
             if (user::set_confirm_account_key($pseudonym))
             {
-                header("location: http://localhost:8080/Camagru/View/verified_email.php?pseudo=$pseudonym");
+                header("location: /Camagru/View/User/Registration/verified_email.php?pseudo=$pseudonym");
                 exit;
             }
             else
             {
-                header("location: http://localhost:8080/Camagru/View/404_error.html");
+                header("location: /Camagru/View/404_error.html");
                 exit;
             }
         }
         else
         {
-            header("location: http://localhost:8080/Camagru/View/already_verified.php?pseudo=$pseudonym");
+            header("location: /Camagru/View/User/Registration/already_verified.php?pseudo=$pseudonym");
             exit;
         }
     }
     else
     {
-        header("location: http://localhost:8080/Camagru/View/404_error.html");
+        header("location: /Camagru/View/404_error.html");
         exit;
     }
 }
 else
 {
-    header("location: http://localhost:8080/Camagru/View/404_error.html");
+    header("location: /Camagru/View/404_error.html");
     exit;
 }
 ?>

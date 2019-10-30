@@ -1,6 +1,6 @@
 <?php
 
-require_once("DB_connect.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_connect.php");
 
 class user
 {
@@ -252,7 +252,7 @@ class user
             <html>
                 <body>
                     <p>
-                    Bienvenue ' . $pseudonym . ' ! Vous venez de vous inscrire sur Camagru, et nous vous en remercions. Pour confirmer votre compte, et pouvoir ainsi accéder à votre espace personnel, veuillez cliquer sur lien ci-dessous:<br/><br/><a href="http://localhost:8080/Camagru/Controller/email_verif.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour confirmer votre compte.</a><br/><br/>
+                    Bienvenue ' . $pseudonym . ' ! Vous venez de vous inscrire sur Camagru, et nous vous en remercions. Pour confirmer votre compte, et pouvoir ainsi accéder à votre espace personnel, veuillez cliquer sur lien ci-dessous:<br/><br/><a href="http://localhost:8080/Camagru/Controller/Registration/email_confirmation.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour confirmer votre compte.</a><br/><br/>
                     Cet e-mail est généré automatiquement. Merci de ne pas y répondre.<br/><br/>
                     L\'équipe Camagru ©.
                     </p>
@@ -272,7 +272,7 @@ class user
             <html>
                 <body>
                     <p>
-                    Bonjour ' . $pseudonym . ' ! Voici le lien pour réinitialiser le mot de passe de votre compte Camagru:<br/><br/><a href="http://localhost:8080/Camagru/View/update_forgotten_password.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour réinitialiser votre mot de passe.</a><br/><br/>
+                    Bonjour ' . $pseudonym . ' ! Voici le lien pour réinitialiser le mot de passe de votre compte Camagru:<br/><br/><a href="http://localhost:8080/Camagru/View/User/Forgotten_Password/update_forgpass.php?pseudo=' . urlencode($pseudonym) . '&amp;key=' . urlencode($confirm_key) . '">Cliquez sur ce lien pour réinitialiser votre mot de passe.</a><br/><br/>
                     Cet e-mail est généré automatiquement. Merci de ne pas y répondre.<br/><br/>
                     L\'équipe Camagru ©.
                     </p>

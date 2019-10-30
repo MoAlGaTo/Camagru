@@ -1,11 +1,25 @@
-<?php ob_start();
-require_once("../Controller/update_info_verif.php")
+<?php
+ob_start();
+if (empty($_SESSION))
+{
+    header("location: /Camagru/View/form.php");
+}
+session_start();
+$empty_message_alert = NULL;
+$lastname_message_alert = NULL;
+$firstname_message_alert = NULL;
+$pseudo_message_alert = NULL;
+$email_message_alert = NULL;
+$pseudo_exist_message_alert = NULL;
+$email_exist_message_alert = NULL;
+$result_message = NULL;
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/update_info_checking.php")
 ?>
 
 <!-- modification information -->
 <section class="update_info">
-    <form class="formsignup formmarg" method="POST" action="./update_info.php">
-        <a href="http://localhost:8080/Camagru/View/form.php"><img src="../Public/Image/camagru_logo.png"></a>
+    <form class="formsignup formmarg" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
+        <a href="/Camagru/View/form.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <p>Mettre à jour ses informations</p>
         <input type="text" name="lastname" id="lastname" value="<? $_SESSION['lastname']?>" placeholder="Nom" />
         <?php if (isset($lastname_message_alert)) { ?> <p class="alert_message"><?= $lastname_message_alert; ?></p><?php } ?>
@@ -26,4 +40,5 @@ require_once("../Controller/update_info_verif.php")
 <?php
 $content = ob_get_clean();
 $css_link = "style_form.css";
-require("template.php");?>
+require($_SERVER['DOCUMENT_ROOT']."/Camagru/View/template.php");
+?>
