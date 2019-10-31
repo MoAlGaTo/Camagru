@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
         $update_user_object = new user;
 
-        if (isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['pseudonym']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirm']))
+        if (isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['pseudonym']) && isset($_POST['email']))
         {
             $lastname = htmlspecialchars($_POST['lastname']);
             $firstname = htmlspecialchars($_POST['firstname']);
@@ -37,11 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             }
             if ($update_user_object->check_pseudo($pseudonym))
             {
-                $pseudo_exist_message_alert = "Le pseudonyme existe déjà";
+                if ($update_user_object->check_pseudo($pseudonym) !== $_SESSION['pseudonym'])
+                {
+                    $pseudo_exist_message_alert = "Le pseudonyme existe déjà";
+                }
             }
             if ($update_user_object->check_email($email))
             {
-                $email_exist_message_alert = "L'adresse e-mail existe déjà";
+                if ($update_user_object->check_email($pseudonym) !== $_SESSION['email'])
+                {
+                    $email_exist_message_alert = "L'adresse e-mail existe déjà";
+                }
+                
             }
             if (empty($lastname_message_alert) && empty($firstname_message_alert) && empty($pseudo_message_alert) && empty($email_message_alert) && empty($email_exist_message_alert) && empty($pseudo_exist_message_alert))
             {
@@ -65,4 +72,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         header("location: /Camagru/View/404_error.html");
     }
 }
-?>

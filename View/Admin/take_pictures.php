@@ -13,7 +13,7 @@ ob_start();
     <li><a href="/Camagru/View/Admin/home_page.php"><img src="/Camagru/Public/Image/home_white.png">Accueil</a></li>
     <li><a href="/Camagru/View/Admin/my_gallery.php"><img src="/Camagru/Public/Image/mygallery_white.png">Ma galerie</a></li>
     <li><a class="page" href="/Camagru/View/Admin/take_pictures.php"><img src="/Camagru/Public/Image/takepicture_blue.png">Photo</a></li>
-    <li><a href="/Camagru/View/Admin/profile_admin.php"><img src="/Camagru/Public/Image/profil_white.png">Profil</a></li>
+    <li><a href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/profil_white.png">Profil</a></li>
     <li><a class="sign_out" href="/Camagru/Controller/Admin/sign_out.php"><img src="/Camagru/Public/Image/logout_red.png">Déconnexion</a></li>
 </ul>
 
