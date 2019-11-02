@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    background-color: #192733;
+    background-color: rgba(250, 250, 250, 0.918);
 }
 
 ul {
@@ -13,8 +13,9 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border: solid #B5BABD 1px;
-    height: 900px;
+    border: solid #efefef 1px;
+    height: 100vh;
+    background-color: white;
 }
 
 li {
@@ -23,11 +24,12 @@ li {
     font-size: 30px;
     padding-left: 35px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 a {
-    color: #B5BABD;
+    color: #202124;
     text-decoration: none;
 }
 
@@ -40,24 +42,54 @@ a:hover {
 }
 
 .welcome_message {
-    font-family: prancer_deer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
-    color: rgb(72, 73, 78);
+    color: #202124;
     font-size: 30px;
-    margin-top: 0;
+    font-weight: bold;
+    margin: 0;
+    width: 370px;
+    height: 50px;
+    padding-bottom: 7px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+a p.welcome_message:hover {
+    color: #3E99ED;
+    text-decoration: underline;
 }
 
 img {
     margin-right: 13px;
 }
 
+hr {
+    width: 80%;
+    background-color: #efefef;
+    color: #efefef;
+    height: 1px;
+    border: none;
+}
+
+.img_admin {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
 .sign_out {
-    color: rgb(136, 38, 38);
+    color: rgb(228, 31, 31);
     font-size: 18px;
 }
 
+.sign_out_img {
+    vertical-align: middle;
+}
+
 .sign_out:hover {
-    color: rgb(224, 20, 20);
+    color: rgb(133, 23, 23);
 }
 
 .logo {
@@ -65,6 +97,8 @@ img {
     width: auto;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 25px;
+    border-bottom: solid 1px #efefef;
 }
 
 .profil {
@@ -73,12 +107,11 @@ img {
 
 .data {
     background-color: white;
-    box-shadow: 5px 5px 5px rgb(72, 73, 78);
-    border: 2px solid rgb(72, 73, 78);
-    height: 500px;
+    border: 1px solid #efefef;
+    height: 700px;
     width: 900px;
-    margin-left: 320px;
-    margin-top: 400px;
+    margin-left: 450px;
+    margin-top: 300px;
 }
 
 .datas {
@@ -86,23 +119,20 @@ img {
     justify-content: center;
     font-size: 20px;
     width: 900px;
-    border: solid #202124 1px;
-    border-left: none;
-    border-right: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
     color: #5F6368;
+    font-weight: bold;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .title {
     width: 30%;
-    padding-left: 5px;
+    padding-left: 100px;
 }
 
 h1 {
     text-align: center;
     color: #202124;
+    margin-top: 50px;
     margin-bottom: 0;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -110,6 +140,7 @@ h1 {
 .descript_h1 {
     text-align: center;
     color: #5F6368;
+    margin-bottom: 50px;
     margin-top: 4px;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -122,7 +153,7 @@ h1 {
 }
 
 .update {
-    color: rgb(65, 79, 202);
+    color: #3E99ED;
     font-size: 18px;
     text-decoration: underline;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -136,6 +167,11 @@ a.update:hover {
 
 .update_text {
     text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.update_text_marg {
+    margin-top: 80px;
 }
 
 

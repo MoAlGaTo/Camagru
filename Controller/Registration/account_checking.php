@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                         $_SESSION['firstname'] = $identity['firstname'];
                         $_SESSION['pseudonym'] = $identity['pseudonym'];
                         $_SESSION['email'] = $identity['email'];
+                        $_SESSION['passworduser'] = $identity['passworduser'];
                         header("location: /Camagru/View/Admin/home_page.php");
                         exit;
                     }
