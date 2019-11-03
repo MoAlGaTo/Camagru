@@ -30,7 +30,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_
 <!-- modification information -->
 <section class="update_info">
     <form class="formsignup formmarg" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
-        <a class="form_link" href="/Camagru/View/form.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
+        <a class="form_link" href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <p>Mettre à jour ses informations</p>
         <input type="text" name="lastname" id="lastname" value="<?= $_SESSION['lastname']?>" placeholder="Nom" />
         <?php if (isset($lastname_message_alert)) { ?> <p class="alert_message"><?= $lastname_message_alert; ?></p><?php } ?>

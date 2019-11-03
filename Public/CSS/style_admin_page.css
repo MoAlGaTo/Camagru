@@ -110,8 +110,8 @@ hr {
     border: 1px solid #efefef;
     height: 700px;
     width: 900px;
-    margin-left: 450px;
-    margin-top: 300px;
+    /* margin-left: 450px; */
+    margin-top: 20px;
 }
 
 .datas {
@@ -172,6 +172,29 @@ a.update:hover {
 
 .update_text_marg {
     margin-top: 80px;
+}
+
+.success_modif {
+    display: flex;
+    flex-direction: column;
+    margin-left: 450px;
+    margin-top: 300px;
+}
+
+.success_message {
+    height: 50px;
+    width: 900px;
+    border: 1px solid rgb(20, 71, 20);
+    background-color: rgb(143, 175, 143);
+    color: rgb(20, 71, 20);
+    text-align: center;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+}
+
+.success_text {
+    margin-top: 14px;
+    margin-bottom: 14px;
 }
 
 

@@ -5,6 +5,7 @@ if (empty($_SESSION))
     header("location: /Camagru/View/form.php");
 }
 ob_start();
+$pc = false;
 ?>
 
 <a href="/Camagru/View/Admin/Profile/profile_admin.php"><p class="welcome_message"><img class="img_admin" src="/Camagru/Public/Image/admin.png"><?= $_SESSION['pseudonym'] ?></p>
@@ -18,6 +19,8 @@ ob_start();
     <li><a class="sign_out" href="/Camagru/Controller/Admin/sign_out.php"><img class="sign_out_img" src="/Camagru/Public/Image/logout.png">Déconnexion</a></li>
 </ul>
 
+<section class="success_modif">
+<?php if (!empty($_GET['pc']) && $_GET['pc'] == true) {?><div class="success_message"><p class="success_text">√ Votre mot de passe a bien été modifié.</p></div><?php } else { $pc = false; } ?>
 <div class="data">
     <h1>Informations personnelles</h1>
     <p class="descript_h1">Informations utilisées pour votre compte Camagru</p>
@@ -29,6 +32,7 @@ ob_start();
 	<p class="update_text"><a class="update" class="update" href="/Camagru/View/Admin/Profile/password_admin_update.php">Modifier son mot de passe</a></p>
 </div>
 </div>
+</section>
 
 <?php
 $content = ob_get_clean();
