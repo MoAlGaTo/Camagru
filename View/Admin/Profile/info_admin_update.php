@@ -13,6 +13,7 @@ $email_message_alert = NULL;
 $pseudo_exist_message_alert = NULL;
 $email_exist_message_alert = NULL;
 $result_message = NULL;
+$authentication = false;
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_admin_checking.php")
 ?>
 
@@ -26,6 +27,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_
     <li><a class="page" href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/profil_blue.png">Profil</a></li>
     <li><a class="sign_out" href="/Camagru/Controller/Admin/sign_out.php"><img class="sign_out_img" src="/Camagru/Public/Image/logout.png">Déconnexion</a></li>
 </ul>
+
+
+<?php if ($authentication) {?>
 
 <!-- modification information -->
 <section class="update_info">
@@ -48,6 +52,20 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_
     </form>
 </section>
 </div>
+
+<?php } else {?>
+
+<!-- Entrez mot de passe -->
+<section class="update_info">
+    <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
+        <a href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
+        <p class="actual_pass">Entrez votre mot de passe actuel</p>
+        <input class="last_input" type="password" name="password" id="password" placeholder="Mot de passe">
+        <?php if (isset($result_pass_message)){?> <p class="alert_message"><?=$result_pass_message;?></p><?php }?>
+        <button class="button" type="submit" name="valid_butt">Valider</button>
+    </form>
+<section>
+<?php }?>
 
 <?php
 $content = ob_get_clean();

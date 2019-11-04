@@ -5,7 +5,6 @@ if (empty($_SESSION))
     header("location: /Camagru/View/form.php");
 }
 ob_start();
-$pc = false;
 ?>
 
 <a href="/Camagru/View/Admin/Profile/profile_admin.php"><p class="welcome_message"><img class="img_admin" src="/Camagru/Public/Image/admin.png"><?= $_SESSION['pseudonym'] ?></p>
@@ -20,7 +19,7 @@ $pc = false;
 </ul>
 
 <section class="success_modif">
-<?php if (!empty($_GET['pc']) && $_GET['pc'] == true) {?><div class="success_message"><p class="success_text">√ Votre mot de passe a bien été modifié.</p></div><?php } else { $pc = false; } ?>
+<?php if (!empty($_GET['pc']) && $_GET['pc'] == 1) {?><div class="success_message"><p class="success_text">√ Votre mot de passe a bien été modifié.</p></div><?php } else if (!empty($_GET['ic']) && $_GET['ic'] == 1) {?><div class="success_message"><p class="success_text">√ Vos informations ont bien été mise à jour.</p></div><?php }?>
 <div class="data">
     <h1>Informations personnelles</h1>
     <p class="descript_h1">Informations utilisées pour votre compte Camagru</p>

@@ -51,7 +51,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/updat
 <section class="update_info">
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <a href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
-        <p>Entrez votre mot de passe</p>
+        <p class="actual_pass">Entrez votre mot de passe actuel</p>
         <input class="last_input" type="password" name="password" id="password" placeholder="Mot de passe">
         <?php if (isset($result_pass_message)){?> <p class="alert_message"><?=$result_pass_message;?></p><?php }?>
         <button class="button" type="submit" name="valid_butt">Valider</button>

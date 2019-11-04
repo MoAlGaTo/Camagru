@@ -3,15 +3,37 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_users.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-    if (isset($_POST['update_butt']))
+    if (isset($_POST['valid_butt']))
     {
+        if (!empty($_POST['password']))
+        {
+            $passworduser = htmlspecialchars($_POST['password']);
+            $passworduser = hash('sha256', $passworduser);
+
+            if ($passworduser == $_SESSION['passworduser'])
+            {
+                $authentication = true;
+            }
+            else
+            {
+                $result_pass_message = 'Mot de passe erroné.';
+            }
+        }
+        else
+        {
+            $result_pass_message = 'Veuillez remplir le champ.';
+        }
+    }
+    else if (isset($_POST['update_butt']))
+    {
+        $authentication = true;
         $name_verif = "/^[^!@#$%^&*(),.;?\":{}\[\]|<>0-9\t]{1,40}$/";
         $pseudonym_verif = "/^.{1,15}$/";
         $email_verif = "/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i";
 
         $update_user_object = new user;
 
-        if (isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['pseudonym']) && isset($_POST['email']))
+        if (!empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['pseudonym']) && !empty($_POST['email']))
         {
             $lastname = htmlspecialchars($_POST['lastname']);
             $firstname = htmlspecialchars($_POST['firstname']);
@@ -35,16 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 $email_message_alert = "Format de l'adresse e-mail invalide.";
             }
-            if ($update_user_object->check_pseudo($pseudonym))
+            if ($pseudonym != $_SESSION['pseudonym'])
             {
-                if ($update_user_object->check_pseudo($pseudonym) !== $_SESSION['pseudonym'])
+                if ($update_user_object->check_pseudo($pseudonym))
                 {
                     $pseudo_exist_message_alert = "Le pseudonyme existe déjà";
                 }
             }
-            if ($update_user_object->check_email($email))
+            if ($email != $_SESSION['email'])
             {
-                if ($update_user_object->check_email($pseudonym) !== $_SESSION['email'])
+                if ($update_user_object->check_email($email))
                 {
                     $email_exist_message_alert = "L'adresse e-mail existe déjà";
                 }
@@ -52,9 +74,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             }
             if (empty($lastname_message_alert) && empty($firstname_message_alert) && empty($pseudo_message_alert) && empty($email_message_alert) && empty($email_exist_message_alert) && empty($pseudo_exist_message_alert))
             {
-                if ($update_user_object->edit_information($lastname, $firstname, $pseudonym, $email, $id))
+                if ($_SESSION['key_infup'] == 0)
                 {
-                    $result_message = "Vos informations ont bien été modifiées.";
+                    $key_infup = 1;
+                    $_SESSION['key_infup'] = 1;
+                }
+                else
+                {
+                    $key_infup = 0;
+                    $_SESSION['key_infup'] = 0;
+                }
+                if ($update_user_object->edit_information($lastname, $firstname, $pseudonym, $email, $id , $key_infup))
+                {
+                    $_SESSION['lastname'] = $lastname;
+                    $_SESSION['firstname'] = $firstname;
+                    $_SESSION['pseudonym'] = $pseudonym;
+                    $_SESSION['email'] = $email;
+                    header("location: /Camagru/View/Admin/Profile/profile_admin.php?ic=1");
+                    exit;
                 }
                 else
                 {

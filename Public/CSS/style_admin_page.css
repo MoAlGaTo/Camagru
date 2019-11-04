@@ -296,3 +296,7 @@ input {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.actual_pass {
+    width: 300px;
+}

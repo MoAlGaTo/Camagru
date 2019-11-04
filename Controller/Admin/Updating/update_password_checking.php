@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 if (user::edit_password($passworduser, $pseudonym))
                 {
                     $_SESSION['passworduser'] = $passworduser;
-                    header("location: /Camagru/View/Admin/Profile/profile_admin.php?pc=true");
+                    header("location: /Camagru/View/Admin/Profile/profile_admin.php?pc=1");
                     exit;
                 }
                 else

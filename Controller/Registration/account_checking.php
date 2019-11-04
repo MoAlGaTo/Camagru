@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 $confirm_key = $add_user_object->make_confirm_key();
                 $confirm_key_password = $add_user_object->make_confirm_key();
 
-                if ($add_user_object->add_user($lastname, $firstname, $pseudonym, $email, $passworduser, $confirm_key, 0, $confirm_key_password, 0))
+                if ($add_user_object->add_user($lastname, $firstname, $pseudonym, $email, $passworduser, $confirm_key, 0, $confirm_key_password, 0, 0))
                 {
                     if ($add_user_object->send_email($email, $pseudonym, $confirm_key))
                     {
@@ -113,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                         $_SESSION['pseudonym'] = $identity['pseudonym'];
                         $_SESSION['email'] = $identity['email'];
                         $_SESSION['passworduser'] = $identity['passworduser'];
+                        $_SESSION['key_infup'] = $identity['key_infup'];
                         header("location: /Camagru/View/Admin/home_page.php");
                         exit;
                     }
