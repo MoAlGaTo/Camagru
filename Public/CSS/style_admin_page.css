@@ -300,3 +300,48 @@ input {
 .actual_pass {
     width: 300px;
 }
+
+
+/*camera*/
+
+.takepicture-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+}
+
+#takePicture {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    margin-top: 300px;
+}
+
+#canvas {
+    border: 10px #333 solid;
+    background-color: #666;
+}
+
+video {
+    display: none;
+}
+
+#photos {
+    height: 900px;
+    width: 400px;
+    margin-top: 40px;
+    border: 1px solid #efefef;
+    overflow: auto;
+}
+
+#photos img {
+    width: 350px;
+    border: 10px #333 solid;
+    margin-left: 10px;
+}
+
+.btn {
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+}
