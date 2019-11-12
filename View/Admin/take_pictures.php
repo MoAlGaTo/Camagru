@@ -23,9 +23,13 @@ ob_start();
 <video id="video" width="0" height="0"></video>
 <div class="takepicture-container">
     <div id="takePicture">
-        <canvas id="canvas" width="400" height="300">Caméra non disponible...</canvas>
+        <button id="startCameraButton" class="on-camera-button">Activer la webcam</button>
+        <canvas id="canvas" width="500" height="400">Caméra non disponible...</canvas>
         <button id="takePicture-button" class="btn">Prendre une photo</button>
         <button id="clear-button" class="btn">Tout effacer</button>
+        <form class="Form_img" method="POST" enctype="multipart/form-data" action="">
+			<input type="file" name="file" id="upload_img">
+		</form>
     </div>
     <div id="photos"></div>
 </div>

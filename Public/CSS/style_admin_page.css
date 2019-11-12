@@ -307,19 +307,30 @@ input {
 .takepicture-container {
     display: flex;
     flex-direction: row;
-    margin-left: 50px;
+    background-color: white;
+    margin-left: 5%;
+    margin-top: 5%;
+    border: 10px #333 solid;
+    margin-bottom: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 40px;
+    width: 60%;
 }
 
 #takePicture {
-    margin: 0px auto;
     width: 500px;
     height: 375px;
-    margin-top: 300px;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 23%;
 }
 
 #canvas {
     border: 10px #333 solid;
     background-color: #666;
+    display: block;
+    margin: 0 auto;
 }
 
 video {
@@ -329,7 +340,7 @@ video {
 #photos {
     height: 900px;
     width: 400px;
-    margin-top: 40px;
+    margin-top: 4%;
     border: 1px solid #efefef;
     overflow: auto;
 }
@@ -344,4 +355,43 @@ video {
     width: 150px;
     height: 30px;
     border-radius: 20px;
+    background-color: #3E99ED;
+    border: solid 2px #3E99ED;
+    color: white;
+    font-size: 13px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    outline: 0;
+}
+
+.on-camera-button {
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #3D913C;
+    border: solid 2px #3D913C;
+    color: white;
+    font-size: 13px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    outline: 0;
+}
+
+.on-camera-button:hover {
+    /* border-color: #333; */
+    border: solid 2px #333;
+    color: #333;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border-color: #333;
+    color: #333;
+    cursor: pointer;
+}
+
+.takenImage {
+    margin-bottom: 15px;
 }
