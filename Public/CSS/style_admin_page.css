@@ -319,8 +319,8 @@ input {
 }
 
 #takePicture {
-    width: 500px;
-    height: 375px;
+    width: 520px;
+    height: 420px;
     margin-top: 10%;
     margin-left: 10%;
     margin-right: 23%;
@@ -349,6 +349,11 @@ video {
     width: 350px;
     border: 10px #333 solid;
     margin-left: 10px;
+}
+
+.div-button {
+    display: flex;
+    flex-direction: row;
 }
 
 .btn {

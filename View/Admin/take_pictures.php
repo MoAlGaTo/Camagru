@@ -24,9 +24,11 @@ ob_start();
 <div class="takepicture-container">
     <div id="takePicture">
         <button id="startCameraButton" class="on-camera-button">Activer la webcam</button>
-        <canvas id="canvas" width="500" height="400">Caméra non disponible...</canvas>
-        <button id="takePicture-button" class="btn">Prendre une photo</button>
-        <button id="clear-button" class="btn">Tout effacer</button>
+        <canvas id="canvas" width="500" height="400"><p>Caméra non disponible...</p></canvas>
+        <div class="div-button">
+            <button id="takePicture-button" class="btn">Prendre une photo</button>
+            <button id="clear-button" class="btn">Tout effacer</button>
+        </div>
         <form class="Form_img" method="POST" enctype="multipart/form-data" action="">
 			<input type="file" name="file" id="upload_img">
 		</form>
