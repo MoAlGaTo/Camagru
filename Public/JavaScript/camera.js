@@ -8,11 +8,16 @@ const photos = document.getElementById('photos');
 const startCameraButton = document.getElementById('startCameraButton');
 const takePictureButton = document.getElementById('takePicture-button');
 const clearButton = document.getElementById('clear-button');
+const takePictureDiv = document.getElementById('div-button');
+const uploadImg = document.getElementById('upload-img');
+const cleanCanvas = document.getElementById('clean-canvas');
+const formUpldImg = document.getElementById('form-upld-img');
 const context = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 
-
+cleanCanvas.style.display = 'none';
+takePictureDiv.style.display = 'none';
 context.font = "30px Arial";
 context.textAlign = "center";
 context.fillStyle = "#333";
@@ -27,7 +32,6 @@ startCameraButton.addEventListener('click', function () {
             if (camera === 0) {
                 // Link to the video source
                 video.srcObject = stream;
-                // Play video
                 video.play();
                 camera = 1;
             } else {
@@ -37,10 +41,12 @@ startCameraButton.addEventListener('click', function () {
                 })
                 video.srcObject = null;
                 context.clearRect(0, 0, width, height);
+                formUpldImg.style.display = 'inline-flex';
                 camera = 0;
             }
         })
         .catch(function() {
+            context.clearRect(0, 0, width, height);
             context.font = "30px Arial";
             context.textAlign = "center";
             context.fillStyle = "#333";
@@ -54,48 +60,85 @@ video.addEventListener("canplay", function setCanvas() {
     if (camera === 1) {
         context.drawImage(video, 0, 0, width, height);
         setTimeout(setCanvas, 0);
+        startCameraButton.classList.remove('green-btn');
+        startCameraButton.classList.add('red-btn');
         startCameraButton.innerHTML = 'Désactiver la webcam';
-        startCameraButton.style.borderColor = '#CC1414';
-        startCameraButton.style.backgroundColor = '#CC1414';
+        takePictureDiv.style.display = 'block';
+        formUpldImg.style.display = 'none';
     } else {
+        startCameraButton.classList.remove('red-btn');
+        startCameraButton.classList.add('green-btn');
         startCameraButton.innerHTML = 'Activer la webcam';
-        startCameraButton.style.borderColor = '#3D913C';
-        startCameraButton.style.backgroundColor = '#3D913C';
         context.font = "30px Arial";
         context.textAlign = "center";
         context.fillStyle = "#333";
         context.fillText("Activer la caméra ou", width / 2, height / 2);
         context.fillText("télécharger une image.", (width / 2), (height / 2) + 30);
+        takePictureDiv.style.display = 'none';
     }
 });
 
 /* -------------------- To take picture -------------------- */
 takePictureButton.addEventListener('click', function () {
-    if (camera === 1) {
         const imgURL = canvas.toDataURL('Image/png');
         let id = Math.random().toString();
         let divImg = document.createElement('div');
         let saveButton = document.createElement('button');
+        let deleteButton = document.createElement('button');
         let img = document.createElement('img');
+        let hr = document.createElement('hr');
         divImg.setAttribute('id', id);
         divImg.setAttribute('class', 'takenImage');
         saveButton.setAttribute('onclick', 'savePicture(id)');
         saveButton.setAttribute('id', id);
-        saveButton.setAttribute('class', 'btn');
+        saveButton.setAttribute('class', 'green-btn');
         saveButton.innerHTML = 'Sauvegarder';
+        deleteButton.setAttribute('onclick', 'deletePicture(id)');
+        deleteButton.setAttribute('id', id);
+        deleteButton.setAttribute('class', 'red-btn');
+        deleteButton.innerHTML = 'Supprimer';
         img.setAttribute('src', imgURL);
         img.setAttribute('id', id);
         img.setAttribute('class', id);
         divImg.appendChild(img);
+        divImg.appendChild(hr);
         divImg.appendChild(saveButton);
-        photos.appendChild(divImg);
-    }
+        divImg.appendChild(deleteButton);
+        photos.insertBefore(divImg, photos.childNodes[0]);
 });
+
+/* -------------------- When an image was upload -------------------- */
+uploadImg.addEventListener('change', function(e) {
+    let upldImg = new Image;
+    upldImg.onload = function() { context.drawImage(this, 0, 0, width, height); };
+    upldImg.src = URL.createObjectURL(this.files[0]);
+    takePictureDiv.style.display = 'block';
+    cleanCanvas.style.display = 'block';
+})
+
+/* -------------------- To clean canvas -------------------- */
+cleanCanvas.addEventListener('click', function() {
+    context.clearRect(0, 0, width, height);
+    context.font = "30px Arial";
+    context.textAlign = "center";
+    context.fillStyle = "#333";
+    context.fillText("Activer la caméra ou", width / 2, height / 2);
+    context.fillText("télécharger une image.", (width / 2), (height / 2) + 30);
+    takePictureDiv.style.display = 'none';
+    cleanCanvas.style.display = 'none';
+})
 
 /* -------------------- To clear all taken pictures -------------------- */
 clearButton.addEventListener('click', function () {
     photos.innerHTML = '';
 });
+
+/* -------------------- To delete picture -------------------- */
+function deletePicture(id) {
+    let element = document.getElementById(id);
+    element.parentElement.removeChild(element);
+}
+
 
 /* -------------------- To save picture -------------------- */
 function savePicture(id) {
@@ -109,8 +152,7 @@ function savePicture(id) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                let element = document.getElementById(id);
-                element.parentElement.removeChild(element);
+                deletePicture(id);
             } else
                 console.log('error');
         }

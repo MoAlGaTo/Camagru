@@ -351,9 +351,8 @@ video {
     margin-left: 10px;
 }
 
-.div-button {
-    display: flex;
-    flex-direction: row;
+#div-button {
+    margin-top: 10px;
 }
 
 .btn {
@@ -370,12 +369,58 @@ video {
     outline: 0;
 }
 
-.on-camera-button {
+.tp-btn {
+    padding: 0;
+    background-color: #3E99ED;
+    height: 49px;
+    width: 49px;
+    border-radius: 50%;
+    outline: 0;
+}
+
+.tp-btn:hover {
+    background-color: rgb(97, 165, 228);
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+.tp-btn-img {
+    margin: 0;
+}
+
+.btn:hover {
+    background-color: rgb(97, 165, 228);
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+.takenImage {
+    margin-bottom: 15px;
+}
+
+#form-upld-img {
+    margin: 0;
+    border: 0;
+    width: 155px;
+    margin-left: 182.5px;
+}
+
+.upl-img-div {
+    width: 520px;
+}
+
+.btn-upld {
+    height: 28px;
+    height: 22px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.red-btn {
     width: 150px;
     height: 30px;
     border-radius: 20px;
-    background-color: #3D913C;
-    border: solid 2px #3D913C;
+    background-color: #DD4C45;
     color: white;
     font-size: 13px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -384,19 +429,29 @@ video {
     outline: 0;
 }
 
-.on-camera-button:hover {
-    /* border-color: #333; */
-    border: solid 2px #333;
-    color: #333;
+.red-btn:hover {
+    background-color: rgb(223, 95, 88);
     cursor: pointer;
+    border: 1px solid #333;
 }
 
-.btn:hover {
-    border-color: #333;
-    color: #333;
-    cursor: pointer;
+.green-btn {
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: rgb(84, 168, 84);
+    /* background-color: #3D913C; */
+    color: white;
+    font-size: 13px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    outline: 0;
 }
 
-.takenImage {
-    margin-bottom: 15px;
+.green-btn:hover {
+    background-color: rgb(114, 167, 114);
+    /* background-color: rgb(92, 148, 92); */
+    cursor: pointer;
+    border: 1px solid #333;
 }

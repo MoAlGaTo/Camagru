@@ -23,15 +23,17 @@ ob_start();
 <video id="video" width="0" height="0"></video>
 <div class="takepicture-container">
     <div id="takePicture">
-        <button id="startCameraButton" class="on-camera-button">Activer la webcam</button>
-        <canvas id="canvas" width="500" height="400"><p>Caméra non disponible...</p></canvas>
-        <div class="div-button">
-            <button id="takePicture-button" class="btn">Prendre une photo</button>
+        <button id="startCameraButton" class="green-btn">Activer la webcam</button>
+        <canvas id="canvas" width="500" height="400"></canvas><hr />
+        <div id="div-button">
+            <button id="takePicture-button" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/button.png"></button>
             <button id="clear-button" class="btn">Tout effacer</button>
         </div>
-        <form class="Form_img" method="POST" enctype="multipart/form-data" action="">
-			<input type="file" name="file" id="upload_img">
-		</form>
+        <button id="clean-canvas" class="btn">Vider le cadre</button>
+        <form id="form-upld-img" method="POST" enctype="multipart/form-data" action="">
+            <label for="upload-img" class="btn btn-upld">Télécharger une image</label>
+            <input type="file" style="visibility:hidden;" name="file" id="upload-img">
+        </form>
     </div>
     <div id="photos"></div>
 </div>
