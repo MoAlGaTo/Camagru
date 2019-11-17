@@ -27,15 +27,30 @@ ob_start();
         <canvas id="canvas" width="500" height="400"></canvas><hr />
         <div id="div-button">
             <button id="takePicture-button" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/button.png"></button>
-            <button id="clear-button" class="btn">Tout effacer</button>
         </div>
-        <button id="clean-canvas" class="btn">Vider le cadre</button>
+        
+        <button id="clean-canvas" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/canvas_cleaner.png"></button>
         <form id="form-upld-img" method="POST" enctype="multipart/form-data" action="">
-            <label for="upload-img" class="btn btn-upld">Télécharger une image</label>
+            <label for="upload-img" class="btn-upld">Télécharger une image</label>
             <input type="file" style="visibility:hidden;" name="file" id="upload-img">
         </form>
+        <ul id="filters">
+            <?php
+                $filters = scandir($_SERVER['DOCUMENT_ROOT'].'/Camagru/Public/Image/Filters');
+                $idIndex = 1;
+
+                foreach ($filters as $filter) {
+                    $type = explode('.', $filter);
+                    if ($type[1] == 'png') {?>
+                    <li><img onclick="addFilter(<?= $idIndex ?>)" class="filter" id="<?= $idIndex ?>" src="/Camagru/Public/Image/Filters/<?= $filter ?>"></li>
+                <?php $idIndex++; } }?>
+        </ul>
     </div>
-    <div id="photos"></div>
+    <div id="photos-block">
+        <button id="clear-button" class="tp-btn clean-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/clean_up.png"></button>
+        <div id="photos"></div>
+    </div>
+    
 </div>
 <script src="/Camagru/Public/JavaScript/camera.js"></script>
 

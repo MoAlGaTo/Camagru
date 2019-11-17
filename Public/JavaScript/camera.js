@@ -55,6 +55,49 @@ startCameraButton.addEventListener('click', function () {
         });
 });
 
+/*
+//----------------add filtre--------------------//
+function addFilter(idFilter){
+	filterTab.push(idFilter);
+}
+​
+​
+//---------------superpose filtre---------------------//
+function drawFilter() 
+{
+		filterTab.forEach(function(filter)
+		{
+			ctx.drawImage(document.getElementById(filter), 0, 0, width, height);
+		})
+​
+}
+//----------------del filtre--------------------//
+​
+function deleteFilter() 
+{
+	if (filterTab != null)
+	{
+		filterTab.pop();
+​
+	}
+	if (camm == 0 && fifi == 0)
+	{
+		// clearRect supprimant tout contenu précédemment dessiné
+		ctx.clearRect(0, 0, width,height);
+	}
+}
+
+
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+for( var i = 0; i < arr.length; i++){ 
+   if ( arr[i] === 5) {
+     arr.splice(i, 1); 
+   }
+}
+*/
+
+
 /* -------------------- To reproduce image in canvas -------------------- */
 video.addEventListener("canplay", function setCanvas() {
     if (camera === 1) {
@@ -65,6 +108,7 @@ video.addEventListener("canplay", function setCanvas() {
         startCameraButton.innerHTML = 'Désactiver la webcam';
         takePictureDiv.style.display = 'block';
         formUpldImg.style.display = 'none';
+        cleanCanvas.style.display = 'none';
     } else {
         startCameraButton.classList.remove('red-btn');
         startCameraButton.classList.add('green-btn');
@@ -109,11 +153,18 @@ takePictureButton.addEventListener('click', function () {
 
 /* -------------------- When an image was upload -------------------- */
 uploadImg.addEventListener('change', function(e) {
-    let upldImg = new Image;
-    upldImg.onload = function() { context.drawImage(this, 0, 0, width, height); };
-    upldImg.src = URL.createObjectURL(this.files[0]);
-    takePictureDiv.style.display = 'block';
-    cleanCanvas.style.display = 'block';
+    let type = this.files[0].type;
+    console.log(type);
+    if (type == "image/png" || type == "image/gif" || type == "image/jpeg") {
+        let upldImg = new Image;
+        upldImg.onload = function() { context.drawImage(this, 0, 0, width, height); };
+        upldImg.src = URL.createObjectURL(this.files[0]);
+        takePictureDiv.style.display = 'block';
+        cleanCanvas.style.display = 'block';
+    } else {
+        alert('Seul les images au format .png, .jpg - .jpeg, et .gif sont acceptés');
+    }
+    
 })
 
 /* -------------------- To clean canvas -------------------- */

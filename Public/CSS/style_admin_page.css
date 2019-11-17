@@ -331,6 +331,7 @@ input {
     background-color: #666;
     display: block;
     margin: 0 auto;
+    margin-top: 15px;
 }
 
 video {
@@ -350,6 +351,10 @@ video {
     border: 10px #333 solid;
     margin-left: 10px;
 }
+
+/* #photos-block {
+    
+} */
 
 #div-button {
     margin-top: 10px;
@@ -410,10 +415,24 @@ video {
 }
 
 .btn-upld {
-    height: 28px;
-    height: 22px;
-    padding-top: 5px;
+    width: 155px;
+    height: 24px;
+    border-radius: 20px;
+    background-color: rgb(121, 118, 118);
+    color: white;
+    font-size: 13px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    outline: 0;
+    padding-top: 8px;
     text-align: center;
+}
+
+.btn-upld:hover {
+    background-color: rgb(143, 140, 140);
+    cursor: pointer;
+    border: 1px solid #333;
 }
 
 .red-btn {
@@ -440,7 +459,6 @@ video {
     height: 30px;
     border-radius: 20px;
     background-color: rgb(84, 168, 84);
-    /* background-color: #3D913C; */
     color: white;
     font-size: 13px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -454,4 +472,37 @@ video {
     /* background-color: rgb(92, 148, 92); */
     cursor: pointer;
     border: 1px solid #333;
+}
+
+.clean-btn {
+    margin-top: 10px;
+}
+
+#clean-canvas {
+    margin-top: 5px;
+}
+
+#filters {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    height: 140px;
+    border: 1px solid #efefef;
+    overflow-x: auto;
+    margin-left: 0;
+}
+
+.filter {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.filter:hover {
+    cursor: pointer;
+}
+
+#takePicture-button {
+    margin-bottom: 60px;
 }
