@@ -24,11 +24,12 @@ ob_start();
 <div class="takepicture-container">
     <div id="takePicture">
         <button id="startCameraButton" class="green-btn">Activer la webcam</button>
-        <canvas id="canvas" width="500" height="400"></canvas><hr />
+        <canvas id="canvas" width="500" height="400"></canvas>
+        <hr />
         <div id="div-button">
             <button id="takePicture-button" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/button.png"></button>
         </div>
-        
+
         <button id="clean-canvas" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/canvas_cleaner.png"></button>
         <form id="form-upld-img" method="POST" enctype="multipart/form-data" action="">
             <label for="upload-img" class="btn-upld">Télécharger une image</label>
@@ -36,21 +37,24 @@ ob_start();
         </form>
         <ul id="filters">
             <?php
-                $filters = scandir($_SERVER['DOCUMENT_ROOT'].'/Camagru/Public/Image/Filters');
-                $idIndex = 1;
+            $filters = scandir($_SERVER['DOCUMENT_ROOT'] . '/Camagru/Public/Image/Filters');
+            $idIndex = 1;
 
-                foreach ($filters as $filter) {
-                    $type = explode('.', $filter);
-                    if ($type[1] == 'png') {?>
+            foreach ($filters as $filter) {
+                $type = explode('.', $filter);
+                if ($type[1] == 'png') { ?>
                     <li><img onclick="addFilter(<?= $idIndex ?>)" class="filter" id="<?= $idIndex ?>" src="/Camagru/Public/Image/Filters/<?= $filter ?>"></li>
-                <?php $idIndex++; } }?>
+            <?php $idIndex++;
+                }
+            } ?>
         </ul>
+        <button id="clear-filters" class="red-btn">Retirer tout les filtres</button>
     </div>
     <div id="photos-block">
         <button id="clear-button" class="tp-btn clean-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/clean_up.png"></button>
         <div id="photos"></div>
     </div>
-    
+
 </div>
 <script src="/Camagru/Public/JavaScript/camera.js"></script>
 

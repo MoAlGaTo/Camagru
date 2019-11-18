@@ -1,5 +1,8 @@
 /* -------------------- Global Vars -------------------- */
 var camera = 0;
+var imageUploaded = 0;
+var filterTab = [];
+var imgUpldFilters = '';
 
 /* -------------------- DOM Elements -------------------- */
 const video = document.getElementById('video');
@@ -12,12 +15,13 @@ const takePictureDiv = document.getElementById('div-button');
 const uploadImg = document.getElementById('upload-img');
 const cleanCanvas = document.getElementById('clean-canvas');
 const formUpldImg = document.getElementById('form-upld-img');
+const clearFilters = document.getElementById('clear-filters');
 const context = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
-
 cleanCanvas.style.display = 'none';
 takePictureDiv.style.display = 'none';
+clearFilters.style.display = 'none';
 context.font = "30px Arial";
 context.textAlign = "center";
 context.fillStyle = "#333";
@@ -28,12 +32,13 @@ context.fillText("télécharger une image.", (width / 2), (height / 2) + 30);
 startCameraButton.addEventListener('click', function () {
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function (stream) {
-
             if (camera === 0) {
                 // Link to the video source
                 video.srcObject = stream;
                 video.play();
                 camera = 1;
+                imageUploaded = 0;
+                clearFilter();
             } else {
                 let tracks = stream.getTracks();
                 tracks.forEach(function (track) {
@@ -55,61 +60,22 @@ startCameraButton.addEventListener('click', function () {
         });
 });
 
-/*
-//----------------add filtre--------------------//
-function addFilter(idFilter){
-	filterTab.push(idFilter);
-}
-​
-​
-//---------------superpose filtre---------------------//
-function drawFilter() 
-{
-		filterTab.forEach(function(filter)
-		{
-			ctx.drawImage(document.getElementById(filter), 0, 0, width, height);
-		})
-​
-}
-//----------------del filtre--------------------//
-​
-function deleteFilter() 
-{
-	if (filterTab != null)
-	{
-		filterTab.pop();
-​
-	}
-	if (camm == 0 && fifi == 0)
-	{
-		// clearRect supprimant tout contenu précédemment dessiné
-		ctx.clearRect(0, 0, width,height);
-	}
-}
-
-
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-
-for( var i = 0; i < arr.length; i++){ 
-   if ( arr[i] === 5) {
-     arr.splice(i, 1); 
-   }
-}
-*/
-
-
-/* -------------------- To reproduce image in canvas -------------------- */
+/* -------------------- To reproduce video image in canvas -------------------- */
 video.addEventListener("canplay", function setCanvas() {
     if (camera === 1) {
         context.drawImage(video, 0, 0, width, height);
-        setTimeout(setCanvas, 0);
+        drawFilter();
         startCameraButton.classList.remove('green-btn');
         startCameraButton.classList.add('red-btn');
         startCameraButton.innerHTML = 'Désactiver la webcam';
+        clearFilters.style.display = 'block';
         takePictureDiv.style.display = 'block';
         formUpldImg.style.display = 'none';
         cleanCanvas.style.display = 'none';
+        setTimeout(setCanvas, 30);
+        uploadImg.value = "";
     } else {
+        clearFilter();
         startCameraButton.classList.remove('red-btn');
         startCameraButton.classList.add('green-btn');
         startCameraButton.innerHTML = 'Activer la webcam';
@@ -119,8 +85,67 @@ video.addEventListener("canplay", function setCanvas() {
         context.fillText("Activer la caméra ou", width / 2, height / 2);
         context.fillText("télécharger une image.", (width / 2), (height / 2) + 30);
         takePictureDiv.style.display = 'none';
+        clearFilters.style.display = 'none';
+        uploadImg.value = "";
     }
 });
+
+/* -------------------- When an image was upload -------------------- */
+uploadImg.addEventListener('change', function(e) {
+    let type = this.files[0].type;
+    if (type == "image/png" || type == "image/gif" || type == "image/jpeg") {
+        clearFilter();
+        // uploadImg.value = "";
+        let upldImg = new Image;
+        upldImg.onload = function() { context.drawImage(this, 0, 0, width, height); };
+        upldImg.src = URL.createObjectURL(this.files[0]);
+        imgUpldFilters = upldImg;
+        clearFilters.style.display = 'block';
+        takePictureDiv.style.display = 'block';
+        cleanCanvas.style.display = 'block';
+        imageUploaded = 1;
+    } else {
+        alert('Seul les images au format .png, .jpg - .jpeg, et .gif sont acceptés');
+    }
+    
+})
+
+/* -------------------- To add id filter to the array -------------------- */
+function addFilter(idFilter) {
+    if (camera == 1 || imageUploaded == 1) {
+        let deleted = 0;
+        for (i = 0; i < filterTab.length; i++) {
+            if (filterTab[i] == idFilter) {
+                filterTab.splice(i, 1);
+                deleted = 1;
+            }
+        }
+        if (deleted == 0) {
+            filterTab.push(idFilter);
+        } else {
+            deleted = 0;
+        }
+        if (imageUploaded == 1) {
+            context.clearRect(0, 0, width, height);
+            context.drawImage(imgUpldFilters, 0, 0, width, height);
+            for (i = 0; i < filterTab.length + 1; i++) {
+                drawFilter(filterTab[i]);
+            }
+        }
+    }
+}
+
+/* -------------------- To superpose filter to the canvas -------------------- */
+function drawFilter() {
+    filterTab.forEach(function(filter) {
+        context.drawImage(document.getElementById(filter), 0, 0, width, height);
+    });
+}
+
+/* -------------------- To delete all the filter from the canvas -------------------- */
+function clearFilter() {
+    filterTab = [];
+}
 
 /* -------------------- To take picture -------------------- */
 takePictureButton.addEventListener('click', function () {
@@ -151,33 +176,30 @@ takePictureButton.addEventListener('click', function () {
         photos.insertBefore(divImg, photos.childNodes[0]);
 });
 
-/* -------------------- When an image was upload -------------------- */
-uploadImg.addEventListener('change', function(e) {
-    let type = this.files[0].type;
-    console.log(type);
-    if (type == "image/png" || type == "image/gif" || type == "image/jpeg") {
-        let upldImg = new Image;
-        upldImg.onload = function() { context.drawImage(this, 0, 0, width, height); };
-        upldImg.src = URL.createObjectURL(this.files[0]);
-        takePictureDiv.style.display = 'block';
-        cleanCanvas.style.display = 'block';
-    } else {
-        alert('Seul les images au format .png, .jpg - .jpeg, et .gif sont acceptés');
+clearFilters.addEventListener('click', function clearFilters() {
+    clearFilter();
+    if (imageUploaded == 1) {
+        context.clearRect(0, 0, width, height);
+        context.drawImage(imgUpldFilters, 0, 0, width, height);
     }
-    
-})
+});
 
 /* -------------------- To clean canvas -------------------- */
 cleanCanvas.addEventListener('click', function() {
     context.clearRect(0, 0, width, height);
+    clearFilter();
+    uploadImg.value = "";
+    imgUpldFilters = '';
     context.font = "30px Arial";
     context.textAlign = "center";
     context.fillStyle = "#333";
     context.fillText("Activer la caméra ou", width / 2, height / 2);
     context.fillText("télécharger une image.", (width / 2), (height / 2) + 30);
+    clearFilters.style.display = 'none';
     takePictureDiv.style.display = 'none';
     cleanCanvas.style.display = 'none';
-})
+    imageUploaded = 0;
+});
 
 /* -------------------- To clear all taken pictures -------------------- */
 clearButton.addEventListener('click', function () {
@@ -193,7 +215,6 @@ function deletePicture(id) {
 
 /* -------------------- To save picture -------------------- */
 function savePicture(id) {
-    console.log(id)
     xhr = new XMLHttpRequest;
     let picture = document.getElementsByClassName(id);
     picture = picture[0];
@@ -204,8 +225,7 @@ function savePicture(id) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 deletePicture(id);
-            } else
-                console.log('error');
+            } 
         }
     };
 

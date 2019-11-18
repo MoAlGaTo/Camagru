@@ -352,10 +352,6 @@ video {
     margin-left: 10px;
 }
 
-/* #photos-block {
-    
-} */
-
 #div-button {
     margin-top: 10px;
 }
@@ -489,7 +485,8 @@ video {
     height: 140px;
     border: 1px solid #efefef;
     overflow-x: auto;
-    margin-left: 0;
+    margin-top: 20px;
+    background-color: #FAFAFA;
 }
 
 .filter {
@@ -501,8 +498,4 @@ video {
 
 .filter:hover {
     cursor: pointer;
-}
-
-#takePicture-button {
-    margin-bottom: 60px;
 }
