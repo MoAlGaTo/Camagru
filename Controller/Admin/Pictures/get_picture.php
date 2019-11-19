@@ -8,6 +8,7 @@ if (isset($_POST['picture']))
     $id_user = $_SESSION['id_user'];
     $image = htmlspecialchars($_POST['picture']);
     picture::add_picture($image, $id_user);
+
 }
 else
 {

@@ -176,6 +176,7 @@ takePictureButton.addEventListener('click', function () {
         photos.insertBefore(divImg, photos.childNodes[0]);
 });
 
+/* -------------------- To remove all filters -------------------- */
 clearFilters.addEventListener('click', function clearFilters() {
     clearFilter();
     if (imageUploaded == 1) {
@@ -219,9 +220,10 @@ function savePicture(id) {
     let picture = document.getElementsByClassName(id);
     picture = picture[0];
     let data = new FormData;
+    console.log(picture.src);
     data.append('picture', picture.src);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 deletePicture(id);

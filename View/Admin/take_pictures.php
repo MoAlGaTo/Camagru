@@ -20,7 +20,7 @@ ob_start();
 </ul>
 
 
-<video id="video" width="0" height="0"></video>
+<video id="video" width="500" height="400"></video>
 <div class="takepicture-container">
     <div id="takePicture">
         <button id="startCameraButton" class="green-btn">Activer la webcam</button>

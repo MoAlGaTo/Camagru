@@ -19,6 +19,21 @@ class picture
 
         return $result;
     }
+
+    static function get_user_pictures($id)
+    {
+        $db = connexion();
+
+        $statement = $db->prepare("SELECT * FROM pictures WHERE id_user=:id");
+
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $count = $statement->fetchAll();
+
+        return $count;
+    }
 }
 
 ?>

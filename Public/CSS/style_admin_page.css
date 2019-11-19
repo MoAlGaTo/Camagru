@@ -198,7 +198,7 @@ a.update:hover {
 }
 
 
-/* Pour les formulaires de mise a jour des informations */
+/* ----------------------------------------------- Admin Forms ----------------------------------------------- */
 
 .formsignup input,
 button {
@@ -301,9 +301,7 @@ input {
     width: 300px;
 }
 
-
-/*camera*/
-
+/* ----------------------------------------------- Take Pictures ----------------------------------------------- */
 .takepicture-container {
     display: flex;
     flex-direction: row;
@@ -465,7 +463,6 @@ video {
 
 .green-btn:hover {
     background-color: rgb(114, 167, 114);
-    /* background-color: rgb(92, 148, 92); */
     cursor: pointer;
     border: 1px solid #333;
 }
@@ -498,4 +495,18 @@ video {
 
 .filter:hover {
     cursor: pointer;
+}
+
+/* ----------------------------------------------- My Gallery ----------------------------------------------- */
+#my-photos {
+    width: 1539px;
+    height: 1500px;
+    overflow: auto;
+    border: 1px solid #efefef;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    padding-left: 13px;
+    margin-left: 85px;
+    margin-top: 20px;
 }
