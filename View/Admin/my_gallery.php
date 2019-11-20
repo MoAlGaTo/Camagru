@@ -19,18 +19,86 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
     <li><a class="sign_out" href="/Camagru/Controller/Admin/sign_out.php"><img class="sign_out_img" src="/Camagru/Public/Image/logout.png">Déconnexion</a></li>
 </ul>
 
+<div id="my-photos-container">
+	<?php
+	$result = picture::get_user_pictures($_SESSION['id_user']);
+	$totalPictures = $result[0];
+	$allPictures = $result[1];
+	$totalDisplay = 12;
+	if (empty($result[1]))
+	{
+		$totalPages = 1;
+	}
+	else
+	{
+		$totalPages = ceil($totalPictures / $totalDisplay);
+	}
 
-<div id="my-photos">
-    <?php
-        $allPictures = picture::get_user_pictures($_SESSION['id_user']);
-        foreach ($allPictures as $picture)
-        {?>
-        <div>
-            <img src=<?= $picture[1]; ?> id=" <?= $picture[0] ?>">
-            <button id="<?= $picture[0] ?>" class="btn">Supprimer</button>
-        </div>
-        <?php }?>
+	if (isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > $totalPages)
+	{
+		$currentPage = $totalPages;
+	}
+	else if (isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0)
+	{
+		$currentPage = intval($_GET['page']);
+	}
+	else
+	{
+		$currentPage = 1;
+	}
+	$start = ($currentPage - 1) * $totalDisplay;
+	$limit = $start + $totalDisplay;
+	?>
+	<div class="pagination top-pag">
+		<?php
+		echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page=1">&laquo;</a>'; 
+		for ($i = 1; $i <= $totalPages; $i++)
+		{
+			if ($i == $currentPage)
+			{
+				echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page='.$i.'" class="a-active">'.$i.'</a>';
+			}
+			else
+			{
+				echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page='.$i.'">'.$i.'</a>';
+			}
+		}
+		echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page='.$totalPages.'">&raquo;</a>';
+		?>
+	</div>
+	<div id="my-photos">
+		<?php
+		while ($start < $limit && $start < $totalPictures)
+		{
+			$picture = $allPictures[$start];
+		?>
+			<div id="individualPicture">
+				<img src=<?= $picture[1] ?> id=" <?= $picture[0] ?>"><hr/>
+				<button id="<?= $picture[0] ?>" class="btn">Supprimer</button>
+			</div>
+	<?php	$start++; 
+			}
+		?>
+	</div>
+	<div class="pagination bottom-pag">
+		<?php
+			echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page=1">&laquo;</a>';
+			for ($i = 1; $i <= $totalPages; $i++)
+			{
+				if ($i == $currentPage)
+				{
+					echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page='.$i.'" class="a-active">'.$i.'</a>';
+				}
+				else
+				{
+					echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page='.$i.'">'.$i.'</a>';
+				}
+			}
+			echo '<a href="http://localhost:8080/Camagru/View/Admin/my_gallery.php?page='.$totalPages.'">&raquo;</a>';
+		?>
+	</div>
 </div>
+
 
 <?php
 $content = ob_get_clean();

@@ -16,6 +16,8 @@ ul {
     border: solid #efefef 1px;
     height: 100vh;
     background-color: white;
+    position: fixed;
+    /* top: 0; */
 }
 
 li {
@@ -110,7 +112,7 @@ hr {
     border: 1px solid #efefef;
     height: 700px;
     width: 900px;
-    /* margin-left: 450px; */
+    margin-left: 450px;
     margin-top: 20px;
 }
 
@@ -306,8 +308,8 @@ input {
     display: flex;
     flex-direction: row;
     background-color: white;
-    margin-left: 5%;
-    margin-top: 5%;
+    margin-left: 515px;
+    margin-top: 150px;
     border: 10px #333 solid;
     margin-bottom: 40px;
     padding-right: 40px;
@@ -498,15 +500,70 @@ video {
 }
 
 /* ----------------------------------------------- My Gallery ----------------------------------------------- */
+#my-photos-container {
+    margin-bottom: 300px;
+    margin-left: 550px;
+    margin-top: 130px;
+}
+
 #my-photos {
     width: 1539px;
-    height: 1500px;
+    height: 1910px;
     overflow: auto;
     border: 1px solid #efefef;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
-    padding-left: 13px;
-    margin-left: 85px;
-    margin-top: 20px;
+    padding: 13px;
 }
+
+#individualPicture {
+    margin-bottom: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    font-family: 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .top-pag {
+    margin-bottom: 15px;
+  }
+
+  .bottom-pag {
+    margin-top: 15px;
+  }
+
+  .a-active {
+    background-color: #3E99ED;
+    color: white;
+    border: 1px solid #3E99ED;
+  }
+
+  .like:hover {
+    cursor: pointer;
+  }
+
+  #like-comment {
+    display: flex;
+    align-items: center;
+  }

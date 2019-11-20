@@ -24,15 +24,32 @@ class picture
     {
         $db = connexion();
 
-        $statement = $db->prepare("SELECT * FROM pictures WHERE id_user=:id");
+        $statement = $db->prepare("SELECT * FROM pictures WHERE id_user=:id ORDER BY id_picture DESC");
 
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
 
         $statement->execute();
 
-        $count = $statement->fetchAll();
+        $count = $statement->rowCount();
+        $all = $statement->fetchAll();
+        $result = array($count, $all);
 
-        return $count;
+        return $result;
+    }
+
+    static function get_pictures()
+    {
+        $db = connexion();
+
+        $statement = $db->prepare("SELECT * FROM pictures ORDER BY id_picture DESC");
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+        $all = $statement->fetchAll();
+        $result = array($count, $all);
+
+        return $result;
     }
 }
 
