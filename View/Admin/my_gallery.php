@@ -73,7 +73,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
 			$picture = $allPictures[$start];
 		?>
 			<div id="individualPicture">
-				<img src=<?= $picture[1] ?> id=" <?= $picture[0] ?>"><hr/>
+				<img src=<?= $picture[1] ?> id="<?= $picture[0] ?>" class="img-my-gallery"><hr/>
 				<button id="<?= $picture[0] ?>" class="btn">Supprimer</button>
 			</div>
 	<?php	$start++; 
@@ -98,7 +98,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
 		?>
 	</div>
 </div>
-
 
 <?php
 $content = ob_get_clean();
