@@ -26,7 +26,8 @@ ob_start();
     <p class="datas"><img src="/Camagru/Public/Image/user.png"><?= $_SESSION['firstname'];?> <?= $_SESSION['lastname'];?><hr /></p>
     <p class="datas"><span class="title">Pseudonyme</span><span class="datas_result"><?= $_SESSION['pseudonym'] ?></span><hr /></p>
 	<p class="datas"><span class="title">E-mail</span><span class="datas_result"><?= $_SESSION['email'] ?></span><hr /></p>
-	<p class="datas"><span class="title">Mot de passe</span><span class="datas_result">**********</span><hr /></p>
+    <p class="datas"><span class="title">Mot de passe</span><span class="datas_result">**********</span><hr /></p>
+    <p class="datas"><span class="title">Notifications e-mail</span><span class="datas_result"><?php if ($_SESSION['receive_notif'] == 1) { echo 'Oui'; } else { echo 'Non'; } ?></span><hr /></p>
 	<p class="update_text update_text_marg"><a class="update" href="/Camagru/View/Admin/Profile/info_admin_update.php">Mettre à jour ses informations</a></p>
 	<p class="update_text"><a class="update" class="update" href="/Camagru/View/Admin/Profile/password_admin_update.php">Modifier son mot de passe</a></p>
 </div>

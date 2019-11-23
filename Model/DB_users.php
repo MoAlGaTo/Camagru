@@ -53,13 +53,13 @@ class user
 		return $result['passworduser'];
     }
     // Ajoute un nouveau user
-    public function add_user($lastname, $firstname, $pseudonym, $email, $password_user, $confirm_key, $confirm_account_key, $confirm_key_password, $confirm_account_key_password, $key_infup)
+    public function add_user($lastname, $firstname, $pseudonym, $email, $password_user, $confirm_key, $confirm_account_key, $confirm_key_password, $confirm_account_key_password, $key_infup, $receive_notif)
     {
         // $db = new DataBase;
         $db = connexion();
 
-        $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, passworduser, confirm_key, confirm_account_key, confirm_key_password, confirm_account_key_password, key_infup)
-        VALUES (:lastname, :firstname, :pseudonym, :email, :password_user, :confirm_key, :confirm_account_key, :confirm_key_password, :confirm_account_key_password, :key_infup)');
+        $statement = $db->prepare('INSERT INTO users (lastname, firstname, pseudonym, email, passworduser, confirm_key, confirm_account_key, confirm_key_password, confirm_account_key_password, key_infup, receive_notif)
+        VALUES (:lastname, :firstname, :pseudonym, :email, :password_user, :confirm_key, :confirm_account_key, :confirm_key_password, :confirm_account_key_password, :key_infup, :receive_notif)');
 
         $statement->bindValue(':lastname', $lastname, PDO::PARAM_STR);
         $statement->bindValue(':firstname', $firstname, PDO::PARAM_STR);
@@ -71,6 +71,7 @@ class user
         $statement->bindValue(':confirm_key_password', $confirm_key_password, PDO::PARAM_STR);
         $statement->bindValue(':confirm_account_key_password', $confirm_account_key_password, PDO::PARAM_INT);
         $statement->bindValue(':key_infup', $key_infup, PDO::PARAM_INT);
+        $statement->bindValue(':receive_notif', $receive_notif, PDO::PARAM_INT);
 
         $statement->execute();
 
@@ -178,13 +179,13 @@ class user
          return $result;
      }
     // Modifie les infos d'un user connecte
-    public function edit_information($lastname, $firstname, $pseudonym, $email, $id, $key_infup)
+    public function edit_information($lastname, $firstname, $pseudonym, $email, $id, $key_infup, $receive_notif)
     {
         // $db = new DataBase;
         $db = connexion();
 
         $statement = $db->prepare('UPDATE users 
-        SET lastname=:lastname, firstname=:firstname, pseudonym=:pseudonym, email=:email, key_infup=:key_infup  WHERE id_user=:id');
+        SET lastname=:lastname, firstname=:firstname, pseudonym=:pseudonym, email=:email, key_infup=:key_infup, receive_notif=:receive_notif  WHERE id_user=:id');
 
         $statement->bindValue(':lastname', $lastname, PDO::PARAM_STR);
         $statement->bindValue(':firstname', $firstname, PDO::PARAM_STR);
@@ -192,6 +193,7 @@ class user
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
         $statement->bindValue(':key_infup', $key_infup, PDO::PARAM_INT);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':receive_notif', $receive_notif, PDO::PARAM_INT);
 
         $statement->execute();
 

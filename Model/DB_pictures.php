@@ -51,6 +51,17 @@ class picture
 
         return $result;
     }
+
+    static function delete_picture($id_picture)
+    {
+        $db = connexion();
+
+        $statement = $db->prepare('DELETE FROM pictures WHERE id_picture=:id_picture');
+
+        $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
 }
 
 ?>

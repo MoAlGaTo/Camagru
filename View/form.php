@@ -20,7 +20,8 @@ if (!empty($_SESSION))
 	// Mesages d'erreur connexion
 	$empty_message_alert_connect = NULL;
 	$connector_message_alert = NULL;
-	$password_message_alert_connect = NULL;
+    $password_message_alert_connect = NULL;
+    
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Registration/account_checking.php");
 ?>
 

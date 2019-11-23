@@ -4,41 +4,24 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_connect.php");
 
 class comment
 {
-    static function add_like($id_user, $id_picture)
+    static function add_comment($id_user, $id_picture, $comment)
     {
         $db = connexion();
 
-        $statement = $db->prepare("SELECT * FROM likes WHERE id_user=:id_user AND id_picture=:id_picture");
+        $statement = $db->prepare("INSERT INTO comments (id_user, id_picture, comment) VALUES (:id_user, :id_picture, :comment)");
 
         $statement->bindValue(':id_user', $id_user, PDO::PARAM_INT);
         $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
+        $statement->bindValue(':comment', $comment, PDO::PARAM_STR);
 
         $statement->execute();
-
-        $like_exist = $statement->rowCount();
-
-        if ($like_exist)
-        {
-            $statement = $db->prepare('DELETE FROM likes WHERE id_user=:id_user AND id_picture=:id_picture');
-            $statement->bindValue(':id_user', $id_user, PDO::PARAM_INT);
-            $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
-            $statement->execute();
-
-        }
-        else
-        {
-            $statement = $db->prepare("INSERT INTO likes (id_user, id_picture) VALUES (:id_user, :id_picture)");
-            $statement->bindValue(':id_user', $id_user, PDO::PARAM_INT);
-            $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
-            $statement->execute();
-        }
     }
 
     static function get_comments($id_picture)
     {
         $db = connexion();
 
-        $statement = $db->prepare("SELECT * FROM comments WHERE id_picture=:id_picture");
+        $statement = $db->prepare("SELECT id_comment, id_user, id_picture, comment, DATE_FORMAT(datecomment, 'le %d/%m/%Y à %Hh%i') AS datecomment FROM comments WHERE id_picture=:id_picture ORDER BY id_comment DESC");
 
         $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
 

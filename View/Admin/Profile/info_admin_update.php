@@ -43,9 +43,18 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_
         <input type="text" name="pseudonym" id="pseudonym" value="<?= $_SESSION['pseudonym']?>" placeholder="Pseudonyme">
         <?php if (isset($pseudo_message_alert)) { ?> <p class="alert_message"><?= $pseudo_message_alert; ?></p><?php } ?>
         <?php if (isset($pseudo_exist_message_alert)) { ?> <p class="alert_message"><?= $pseudo_exist_message_alert; ?></p><?php } ?>
-        <input class="last_input" type="email" name="email" id="email" value="<?= $_SESSION['email']?>" placeholder="E-mail">
+        <input type="email" name="email" id="email" value="<?= $_SESSION['email']?>" placeholder="E-mail">
         <?php if (isset($email_message_alert)) { ?> <p class="alert_message"><?= $email_message_alert; ?></p><?php } ?>
         <?php if (isset($email_exist_message_alert)) { ?> <p class="alert_message"><?= $email_exist_message_alert; ?></p><?php } ?>
+        <h4 class="h4-info-modif">Recevoir une notification par e-mail lorsqu'un commentaire est posté sur ma photo :</h4>
+        <div class="checkbox">
+            <label class="radio-btn yes">Oui
+                <input class="radio" type="radio"<?php if ($_SESSION['receive_notif'] == 1) {?> checked="checked"<?php } ?> name="radio" value="yes">
+            </label>
+            <label class="radio-btn">Non
+                <input class="radio last_input" <?php if ($_SESSION['receive_notif'] == 0) {?> checked="checked"<?php } ?> type="radio" name="radio" value="no">
+            </label>
+        </div>
         <?php if (isset($empty_message_alert)) { ?> <p class="alert_message"><?= $empty_message_alert; ?></p><?php } ?>
         <?php if (isset($result_message)) { ?> <p class="alert_message"><?= $result_message; ?></p><?php } ?>
         <button class="button" type="submit" name="update_butt">Modifier</button>

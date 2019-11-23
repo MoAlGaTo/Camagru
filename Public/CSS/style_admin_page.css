@@ -191,6 +191,7 @@ a.update:hover {
     text-align: center;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 18px;
+    margin-left: 450px;
 }
 
 .success_text {
@@ -288,7 +289,7 @@ input {
 .update_info {
     width: 348px;
     margin-top: 250px;
-    margin-left: 20%;
+    margin-left: 38%;
 }
 
 .alert_message {
@@ -300,6 +301,35 @@ input {
 
 .actual_pass {
     width: 300px;
+}
+
+.h4-info-modif {
+    padding-left: 45px;
+    padding-right: 45px;
+    color: #586069;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.radio-btn {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100px;    
+}
+
+.radio-btn:hover {
+    cursor: pointer;
+}
+
+.radio:hover {
+    cursor: pointer;
+}
+
+.yes {
+    margin-left: 60px;
 }
 
 /* ----------------------------------------------- Take Pictures ----------------------------------------------- */
@@ -485,6 +515,8 @@ video {
     overflow-x: auto;
     margin-top: 20px;
     background-color: #FAFAFA;
+    position: unset;
+    margin-top: 0;
 }
 
 .filter {
@@ -590,6 +622,7 @@ overflow: auto;
 border: 1px solid #efefef;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(4, 1fr);
 justify-content: center;
 padding: 13px;
 padding-right: 0;
@@ -649,6 +682,7 @@ textarea {
 #display-comments {
     height: 480px;
     padding: 15px;
+    overflow: auto;
 }
 
 .add-comment {
@@ -671,8 +705,9 @@ textarea {
 
 .form-like-comment {
     border: 0;
-    margin-top: 0;
+    margin: 0;
     background-color: rgba(250, 250, 250, 0.918);
+    display: contents;
 }
 
 .like-word {
@@ -685,4 +720,19 @@ textarea {
 
 .like-phrase {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+    color: #9a9fa5;
+}
+
+h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+}
+
+.comment-display {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #586069;
 }

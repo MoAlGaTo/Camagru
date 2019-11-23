@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS users(
     confirm_account_key INT NOT NULL,
     confirm_key_password VARCHAR(100) NOT NULL,
     confirm_account_key_password INT NOT NULL,
-    key_infup INT NOT NULL
+    key_infup INT NOT NULL,
+    receive_notif INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS pictures(

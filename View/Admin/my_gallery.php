@@ -6,6 +6,7 @@ if (empty($_SESSION))
 }
 ob_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Pictures/delete_picture.php");
 ?>
 
 <a href="/Camagru/View/Admin/Profile/profile_admin.php"><p class="welcome_message"><img class="img_admin" src="/Camagru/Public/Image/admin.png"><?= $_SESSION['pseudonym'] ?></p>
@@ -74,7 +75,10 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
 		?>
 			<div id="individualPicture">
 				<img src=<?= $picture[1] ?> id="<?= $picture[0] ?>" class="img-my-gallery"><hr/>
-				<button id="<?= $picture[0] ?>" class="btn">Supprimer</button>
+				<form action="<?=$_SERVER['PHP_SELF'].'?page='.$currentPage;?>" method="POST" class="form-like-comment">
+					<input type="hidden" name="delete_picture" value="<?= $picture[0] ?>">
+					<button type="submit" name="delete_button" class="btn">Supprimer</button>
+				</form>
 			</div>
 	<?php	$start++; 
 			}

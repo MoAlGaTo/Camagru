@@ -39,6 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $firstname = htmlspecialchars($_POST['firstname']);
             $pseudonym = htmlspecialchars($_POST['pseudonym']);
             $email = htmlspecialchars($_POST['email']);
+            $receive_notif = htmlspecialchars($_POST['radio']);
+            if ($receive_notif == 'yes')
+            {
+                $receive_notif = 1;
+            }
+            else
+            {
+                $receive_notif = 0;
+            }
             $id = $_SESSION['id_user'];
 			
             if (!preg_match($name_verif, $lastname))
@@ -84,12 +93,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                     $key_infup = 0;
                     $_SESSION['key_infup'] = 0;
                 }
-                if ($update_user_object->edit_information($lastname, $firstname, $pseudonym, $email, $id , $key_infup))
+                if ($update_user_object->edit_information($lastname, $firstname, $pseudonym, $email, $id , $key_infup, $receive_notif))
                 {
                     $_SESSION['lastname'] = $lastname;
                     $_SESSION['firstname'] = $firstname;
                     $_SESSION['pseudonym'] = $pseudonym;
                     $_SESSION['email'] = $email;
+                    $_SESSION['receive_notif'] = $receive_notif;
                     header("location: /Camagru/View/Admin/Profile/profile_admin.php?ic=1");
                     exit;
                 }

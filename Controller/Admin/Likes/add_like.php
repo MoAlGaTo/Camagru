@@ -2,7 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_likes.php");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['add_comment']))
 {
     if (isset($_POST['add_like']))
     {

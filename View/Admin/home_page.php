@@ -9,6 +9,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_likes.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_comments.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Likes/add_like.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Comments/add_comment.php");
 ?>
 
 <a href="/Camagru/View/Admin/Profile/profile_admin.php"><p class="welcome_message"><img class="img_admin" src="/Camagru/Public/Image/admin.png"><?= $_SESSION['pseudonym'] ?></p>
@@ -54,7 +55,6 @@ $start = ($currentPage - 1) * $totalDisplay;
 $limit = $start + $totalDisplay;
 ?>
 
-
 <div id="all-pages">
 	<div id="my-photos-container-2">
 		<div class="pagination top-pag">
@@ -98,14 +98,14 @@ $limit = $start + $totalDisplay;
 						}
 					?>
 					<div id="like-comment">
-						<form action="<?=$_SERVER['PHP_SELF'];?>" method="POST" class="form-like-comment">
+						<form action="<?=$_SERVER['PHP_SELF'].'?page='.$currentPage;?>" method="POST" class="form-like-comment">
 							<input type="hidden" name="add_like" value="<?= $picture[0] ?>">
 							<input type="image" <?php if ($already_liked) { ?> src='/Camagru/Public/Image/love.png' <?php } else { ?> src='/Camagru/Public/Image/love_black.png' onmouseout="this.src='/Camagru/Public/Image/love_black.png';" onmouseover="this.src='/Camagru/Public/Image/love.png';"<?php } ?> class="like" type="submit"/>
 						</form>
 
 						<p class="like-phrase"><?= $likes_number ?><span class="like-word">j'aime</span></p>
 
-						<a href="http://localhost:8080/Camagru/View/Admin/home_page.php?page=<?= $currentPage; ?>&picture_comments=<?= $picture[0] ?>"><img src='/Camagru/Public/Image/comment-white-oval-bubble.png' onmouseover="this.src='/Camagru/Public/Image/comment-black-oval-bubble-shape.png';" onmouseout="this.src='/Camagru/Public/Image/comment-white-oval-bubble.png';" class="like comment-word"></a>
+						<a href="http://localhost:8080/Camagru/View/Admin/home_page.php?page=<?= $currentPage; ?>&picture_comments=<?= $picture[0] ?>"><img <?php if (isset($_GET['picture_comments']) && $_GET['picture_comments'] == $picture[0]) {?> src='/Camagru/Public/Image/comment-black-oval-bubble-shape.png'<?php } else {?> src='/Camagru/Public/Image/comment-white-oval-bubble.png' onmouseover="this.src='/Camagru/Public/Image/comment-black-oval-bubble-shape.png';" onmouseout="this.src='/Camagru/Public/Image/comment-white-oval-bubble.png';" <?php }?> class="like comment-word"></a>
 					</div>
 				</div>
 		<?php	$start++; 
@@ -137,30 +137,56 @@ $limit = $start + $totalDisplay;
 		if (isset($_GET['picture_comments']) && !empty($_GET['picture_comments']) && $_GET['picture_comments'] > 0)
 		{
 			$id_picture_get_comments = intval($_GET['picture_comments']);
-			$result_comments = comment::get_comments($id_picture_get_comments);
-	
-			if ($result_comments[0])
-			{
-				$all_picture_comments = $result_comments[1];
-			}
 
-			foreach ($all_picture_comments as $picture_comment)
+			$count = 1;
+			$max = false;
+
+			foreach ($allPictures as $picture)
 			{
-				$user = comment::get_user($picture_comment[1]);
-				$date = $picture_comment[4];
-				$comment = $picture_comment[3];
-			?>
-			<h4><?= $user ?>, le <?= $date ?>.</h4>
-			<p><?= $comment ?></p>
-			<?php
+				
+				if ($picture['id_picture'] == $id_picture_get_comments)
+				{
+					$max = true;
+					$location = $count;
+				}
+				$count++;
 			}
-			?>
-		</div>
-		<form id="add-comment-form">
-			<textarea placeholder="Écrire un commentaire..."></textarea>
-			<button name="add_comment" class="btn add-comment">Ajouter</button>
-		</form>
+			if ($max)
+			{
+				$location = ceil($location / 12);
+				if ($location != $currentPage)
+				{
+					header('location: http://localhost:8080/Camagru/View/Admin/home_page.php?page='.$location.'&picture_comments='.$id_picture_get_comments);
+				}
+				$result_comments = comment::get_comments($id_picture_get_comments);
+	
+				if ($result_comments[0])
+				{
+					$all_picture_comments = $result_comments[1];
+					foreach ($all_picture_comments as $picture_comment)
+					{
+						$user = comment::get_user($picture_comment[1]);
+						$date = $picture_comment[4];
+						$comment = $picture_comment[3];
+					?>
+						<h4><?= $user ?>, <?= $date ?>.</h4>
+						<p class="comment-display"><?= $comment ?></p>
+				<?php
+					}
+				}
+				else
+				{?>
+					<h2>Aucun commentaire</h2>
+					<?php
+				}?>
+				</div>
+				<form action="<?=$_SERVER['PHP_SELF'].'?page='.$currentPage;?>&picture_comments=<?= $id_picture_get_comments ?>" method="POST" id="add-comment-form">
+					<input type="hidden" name="picture" value="<?= $id_picture_get_comments ?>">
+					<textarea name="comment" placeholder="Écrire un commentaire(200 caractères maximum)..." maxlength="200"></textarea>
+					<button type="submit" name="add_comment" class="btn add-comment">Ajouter</button>
+				</form>
 		<?php
+			}
 		}
 		?>
 	</div>
