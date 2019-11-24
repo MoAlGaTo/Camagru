@@ -2,7 +2,7 @@
 session_start();
 if (empty($_SESSION))
 {
-    header("location: /Camagru/View/form.php");
+    header("location: /Camagru/index.php");
 }
 ob_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
@@ -75,7 +75,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Pictures/delet
 		?>
 			<div id="individualPicture">
 				<img src=<?= $picture[1] ?> id="<?= $picture[0] ?>" class="img-my-gallery"><hr/>
-				<form action="<?=$_SERVER['PHP_SELF'].'?page='.$currentPage;?>" method="POST" class="form-like-comment">
+				<form action="<?=$_SERVER['PHP_SELF'].'?page='.$currentPage;?>" method="POST" class="delete-button">
 					<input type="hidden" name="delete_picture" value="<?= $picture[0] ?>">
 					<button type="submit" name="delete_button" class="btn">Supprimer</button>
 				</form>

@@ -2,7 +2,7 @@
 session_start();
 if (empty($_SESSION))
 {
-    header("location: /Camagru/View/form.php");
+    header("location: /Camagru/index.php");
 }
 ob_start();
 ?>

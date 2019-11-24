@@ -2,12 +2,12 @@
 
 
 <div id="content">
-    <a href="/Camagru/View/form.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
+    <a href="/Camagru/index.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
     <div id="success"><p id="success_p">√ Votre inscription a bien été prise en compte</p></div>
     <h1>Un e-mail de confirmation vous a été envoyé.</h1>
     <p>Avant de pouvoir accéder à votre compte Camagru, veuillez valider votre adresse e-mail.<br/>
     Pensez à vérifier dans vos courrier indésirable.</p>
-    <p><a href="/Camagru/View/form.php">Retour à la page d'accueil</a></p>
+    <p><a href="/Camagru/index.php">Retour à la page d'accueil</a></p>
 </div>
 
 <?php

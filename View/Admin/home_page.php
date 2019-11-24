@@ -2,7 +2,7 @@
 session_start();
 if (empty($_SESSION))
 {
-    header("location: /Camagru/View/form.php");
+    header("location: /Camagru/index.php");
 }
 ob_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
@@ -166,6 +166,7 @@ $limit = $start + $totalDisplay;
 					foreach ($all_picture_comments as $picture_comment)
 					{
 						$user = comment::get_user($picture_comment[1]);
+						$user = $user[3];
 						$date = $picture_comment[4];
 						$comment = $picture_comment[3];
 					?>

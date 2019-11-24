@@ -3,7 +3,7 @@ session_start();
 ob_start();
 if (empty($_SESSION))
 {
-    header("location: /Camagru/View/form.php");
+    header("location: /Camagru/index.php");
 }
 // Message d'erreurs modification mot de passe
 $password_message_alert = NULL;

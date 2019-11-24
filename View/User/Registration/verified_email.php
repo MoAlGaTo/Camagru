@@ -10,11 +10,11 @@ else
 ?>
 
 <div id="content">
-<a href="/Camagru/View/form.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
+<a href="/Camagru/index.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
 <div id="success"><p id="success_p">√ Votre e-mail a bien été verifié</p></div>
 <h1>Félicitations <?= $pseudonym?> !</h1>
 <p>Vous pouvez maintenant avoir accès à votre compte Camagru.</p>
-<p><a href="/Camagru/View/form.php">Retourner à la page d'accueil et se connecter</a></p>
+<p><a href="/Camagru/index.php">Retourner à la page d'accueil et se connecter</a></p>
 </div>
 
 <?php

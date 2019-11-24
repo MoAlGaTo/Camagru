@@ -65,3 +65,10 @@ a:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(117, 13, 13);
 }
+
+@media all and (max-width: 880px)
+{
+    #content {
+        width: 490px;
+    }
+}

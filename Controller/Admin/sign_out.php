@@ -5,7 +5,7 @@ session_destroy();
 
 if (session_status() === PHP_SESSION_NONE)
 {
-    header("location: /Camagru/View/form.php");
+    header("location: /Camagru/index.php");
     exit;
 }
 else

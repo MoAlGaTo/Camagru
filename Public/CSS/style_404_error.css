@@ -43,3 +43,14 @@ a:hover {
     text-decoration: none;
     color: #464047;
 }
+
+@media all and (max-width: 870px)
+{
+    #error {
+        width: 480px;
+    }
+
+    img {
+        width: 470px;
+    }
+}

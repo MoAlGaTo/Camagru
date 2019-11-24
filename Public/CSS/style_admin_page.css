@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'prancer_deer';
-    src: url('../Fonts/prancer_deer/Prancer_Deer.otf') format('eot'), url('../Fonts/prancer_deer/Prancer_Deer.ttf') format('truetype');
-}
-
 body {
     margin: 0;
     background-color: rgba(250, 250, 250, 0.918);
@@ -603,6 +598,13 @@ align-items: center;
 border-radius: 5px;
 }
 
+.delete-button {
+    border: 0;
+    margin: 0;
+    background-color: rgba(250, 250, 250, 0.918);
+    display: contents;
+}
+
 /* ----------------------------------------------- Home Page ----------------------------------------------- */
 
 #all-pages {
@@ -707,7 +709,6 @@ textarea {
     border: 0;
     margin: 0;
     background-color: rgba(250, 250, 250, 0.918);
-    display: contents;
 }
 
 .like-word {
@@ -735,4 +736,61 @@ h4 {
 .comment-display {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #586069;
+}
+
+@media all and (min-width: 830px) and (max-width: 1050px)
+{
+    ul {
+        height: 550px;
+    }
+
+    .update_info {
+        margin-top: 529px;
+        margin-left: 25%;
+    }
+    
+    .formmarg {
+        margin-top: 75px;
+    }
+}
+
+@media all and (min-width: 650px) and (max-width: 830px)
+{
+    ul {
+        height: 550px;
+        position: unset;
+    }
+
+    .update_info {
+        margin-top: 529px;
+        margin-left: 4%;
+    }
+
+    .formmarg {
+        margin-top: 75px;
+    }
+
+}
+
+@media all and (min-width: 500px) and (max-width: 650px)
+{
+    ul {
+        height: 550px;
+        position: unset;
+    }
+
+    .update_info {
+        margin-top: 529px;
+        margin-left: -21%;
+    }
+
+
+    .welcome_message {
+        display: none;
+    }
+
+    .formmarg {
+        margin-top: 75px;
+    }
+
 }
