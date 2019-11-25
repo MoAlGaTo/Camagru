@@ -173,7 +173,7 @@ a.update:hover {
 .success_modif {
     display: flex;
     flex-direction: column;
-    margin-left: 450px;
+    margin-left: 20%;
     margin-top: 300px;
 }
 
@@ -738,50 +738,329 @@ h4 {
     color: #586069;
 }
 
+/* ----------------------------------------------- take pictures ----------------------------------------------- */
+@media all and (min-width: 1885px) and (max-width: 2250px)
+{
+    #filters {
+        width: 520px;
+    }
+
+    .takepicture-container {
+        margin-left: 450px;
+    }
+
+    #takePicture {
+        margin-right: 10%;
+    }
+}
+
+@media all and (min-width: 1675px) and (max-width: 1885px)
+{
+    #filters {
+        width: 520px;
+    }
+
+    .takepicture-container {
+        margin-left: 450px;
+    }
+
+    #takePicture {
+        margin-right: 10%;
+        margin-left: 0;
+    }
+}
+
+@media all and (min-width: 1440px) and (max-width: 1675px)
+{
+    .takepicture-container {
+        margin-left: 390px;
+    }
+
+    #takePicture {
+        margin-right: 3%;
+        margin-left: 0;
+    }
+
+    #photos {
+        width: 336px;
+    }
+
+    #photos img {
+        width: 296px;
+    }
+
+    #filters {
+        width: 520px;
+    }
+}
+
+@media all and (min-width: 1050px) and (max-width: 1440px)
+{
+    .takepicture-container {
+        margin-left: 390px;
+        flex-direction: column;
+        width: 521px;
+    }
+
+    #takePicture {
+        margin-right: 3%;
+        margin-left: 0;
+    }
+
+    #photos {
+        width: 336px;
+        margin-left: 100px;
+    }
+
+    #photos img {
+        width: 296px;
+    }
+
+    #filters {
+        width: 520px;
+    }
+
+    #photos-block {
+        margin-top: 315px;
+    }
+}
+
+/* ----------------------------------------------- display info ----------------------------------------------- */
+@media all and (min-width: 1650px) and (max-width: 2030px)
+{
+    .success_modif {
+        margin-left: 8%;
+    }
+}
+
+@media all and (min-width: 1535px) and (max-width: 1650px)
+{
+    .success_modif {
+        margin-left: 1%;
+    }
+}
+
+@media all and (min-width: 1360px) and (max-width: 1535px)
+{
+    .data{
+        width: 644px;
+        margin-left: 40%;
+    }
+
+    .success_message {
+        height: 50px;
+        width: 595px;
+    }
+}
+
+@media all and (min-width: 1050px) and (max-width: 1360px)
+{
+    .data{
+        width: 644px;
+        margin-left: 24%;
+    }
+
+    .success_message {
+        height: 50px;
+        width: 595px;
+        margin-left: 223px;
+    }
+}
+
+
+/* ----------------------------------------------- form update ----------------------------------------------- */
 @media all and (min-width: 830px) and (max-width: 1050px)
 {
+    .success_modif {
+        margin-top: 565px;
+        margin-left: -18%;
+    }
+
+    .success_message {
+        height: 50px;
+        width: 595px;
+        margin-left: 223px;
+        margin-left: 26px;
+    }
+
+    .data{
+        width: 644px;
+        margin-left: 0;
+        margin-bottom: 100px;
+    }
+
     ul {
         height: 550px;
+        position: unset;
+    }
+
+    .profil {
+        flex-direction: column;
     }
 
     .update_info {
-        margin-top: 529px;
-        margin-left: 25%;
+        margin-top: 540px;
+        margin-left: -10%;
+        margin-bottom: 100px;
     }
     
     .formmarg {
         margin-top: 75px;
     }
+
+    .takepicture-container {
+        flex-direction: column;
+        width: 521px;
+        margin-top: 80px;
+        margin-left: 20%;
+    }
+
+    #takePicture {
+        margin-right: 3%;
+        margin-left: 0;
+    }
+
+    #photos {
+        width: 336px;
+        margin-left: 100px;
+    }
+
+    #photos img {
+        width: 296px;
+    }
+
+    #filters {
+        width: 520px;
+    }
+
+    #photos-block {
+        margin-top: 315px;
+    }
 }
 
 @media all and (min-width: 650px) and (max-width: 830px)
 {
+    .success_modif {
+        margin-top: 36px;
+        margin-left: 4%;
+    }
+
+    .success_message {
+        height: 50px;
+        width: 549px;
+        margin-left: 223px;
+        margin-left: 26px;
+    }
+
+    .data{
+        width: 598px;
+        margin-left: 0;
+        margin-bottom: 100px;
+    }
+
     ul {
         height: 550px;
         position: unset;
     }
 
     .update_info {
-        margin-top: 529px;
+        margin-top: 0px;
         margin-left: 4%;
+        margin-bottom: 100px;
     }
 
     .formmarg {
         margin-top: 75px;
     }
 
+    .profil {
+        flex-direction: column;
+    }
+
+    .takepicture-container {
+        flex-direction: column;
+        width: 377px;
+        margin-top: 80px;
+        margin-left: 5%;
+    }
+
+    #canvas {
+        width: 350px;
+        height: 250px;
+        margin-left: 4px;
+    }
+
+    #takePicture {
+        margin-right: 3%;
+        margin-left: 0;
+    }
+
+    #photos {
+        width: 336px;
+        margin-left: 20px;
+    }
+
+    #photos img {
+        width: 296px;
+    }
+
+    #filters {
+        width: 375px;
+    }
+
+    #form-upld-img {
+        margin-left: 117px;
+    }
+
+    #photos-block {
+        margin-top: 315px;
+    }
+
 }
 
-@media all and (min-width: 500px) and (max-width: 650px)
+@media all and (max-width: 650px)
 {
+    .success_modif {
+        margin-top: 36px;
+        margin-left: 4%;
+    }
+
+    .success_message {
+        height: 50px;
+        width: 400px;
+        margin-left: 223px;
+        margin-left: 26px;
+    }
+
+    .data{
+        width: 450px;
+        margin-left: 0;
+        margin-bottom: 100px;
+    }
+
+    .datas {
+        justify-content: unset;
+        margin-left: 10px;
+    }
+
+    .title {
+        padding-left: 8px;
+        width: 15%;
+    }
+
     ul {
         height: 550px;
         position: unset;
     }
 
     .update_info {
-        margin-top: 529px;
-        margin-left: -21%;
+        margin-top: 0px;
+        margin-left: -105px;
+        margin-bottom: 100px;
+    }
+
+    .profil {
+        flex-direction: column;
     }
 
 
@@ -791,6 +1070,35 @@ h4 {
 
     .formmarg {
         margin-top: 75px;
+    }
+
+    .takepicture-container {
+        flex-direction: column;
+        width: 521px;
+        margin-top: 80px;
+        margin-left: 20%;
+    }
+
+    #takePicture {
+        margin-right: 3%;
+        margin-left: 0;
+    }
+
+    #photos {
+        width: 336px;
+        margin-left: 100px;
+    }
+
+    #photos img {
+        width: 296px;
+    }
+
+    #filters {
+        width: 520px;
+    }
+
+    #photos-block {
+        margin-top: 315px;
     }
 
 }
