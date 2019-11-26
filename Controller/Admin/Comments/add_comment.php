@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['add_like']))
     else
     {
         header("location: /Camagru/View/404_error.html");
+        die();
     }
 }
 

@@ -4,6 +4,7 @@ ob_start();
 if (empty($_SESSION))
 {
     header("location: /Camagru/index.php");
+    die();
 }
 // Message d'erreurs modification mot de passe
 $password_message_alert = NULL;
@@ -13,6 +14,13 @@ $empty_message_alert = NULL;
 $result_message = NULL;
 $result_pass_message = NULL;
 $authentication = false;
+
+// Sauvegarde informations entrees
+$temporary_modifpass_password = NULL;
+
+$temporary_password = NULL;
+$temporary_confirm_password= NULL;
+
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/update_password_checking.php");
 ?>
 
@@ -34,9 +42,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/updat
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <a href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <p>Modifier son mot de passe</p>
-        <input type="password" name="password" id="password" placeholder="Nouveau mot de passe">
+        <input type="password" name="password" id="password" placeholder="Nouveau mot de passe" <?php if (isset($temporary_password)) {?> value="<?= $temporary_password ?>" <?php  }?>>
         <?php if (isset($password_message_alert)){?> <p class="alert_message"><?=$password_message_alert;?></p><?php }?>
-        <input class="last_input" type="password" name="password_confirm" id="password_confirm" placeholder="Confirmation mot de passe">
+        <input class="last_input" type="password" name="password_confirm" id="password_confirm" placeholder="Confirmation mot de passe" <?php if (isset($temporary_confirm_password)) {?> value="<?= $temporary_confirm_password ?>" <?php  }?>>
         <?php if (isset($password_confirm_message_alert)){?> <p class="alert_message"><?=$password_confirm_message_alert;?></p><?php }?>
         <?php if (isset($password_exist_message_alert)){?> <p class="alert_message"><?=$password_exist_message_alert;?></p><?php }?>
         <?php if (isset($empty_message_alert)){?> <p class="alert_message"><?=$empty_message_alert;?></p><?php }?>
@@ -52,7 +60,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/updat
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <a href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <p class="actual_pass">Entrez votre mot de passe actuel</p>
-        <input class="last_input" type="password" name="password" id="password" placeholder="Mot de passe">
+        <input class="last_input" type="password" name="password" id="password" <?php if (isset($temporary_modifpass_password)) {?> value="<?= $temporary_modifpass_password ?>" <?php  } ?> placeholder="Mot de passe">
         <?php if (isset($result_pass_message)){?> <p class="alert_message"><?=$result_pass_message;?></p><?php }?>
         <button class="button" type="submit" name="valid_butt">Valider</button>
     </form>

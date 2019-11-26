@@ -3,6 +3,7 @@ session_start();
 if (empty($_SESSION))
 {
     header("location: /Camagru/index.php");
+    die();
 }
 ob_start();
 $empty_message_alert = NULL;
@@ -14,6 +15,15 @@ $pseudo_exist_message_alert = NULL;
 $email_exist_message_alert = NULL;
 $result_message = NULL;
 $authentication = false;
+
+// Sauvegarde informations entrees
+$temporary_info_password = NULL;
+
+$temporary_lastname = NULL;
+$temporary_firstname = NULL;
+$temporary_pseudonym = NULL;
+$temporary_email = NULL;
+
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_admin_checking.php")
 ?>
 
@@ -36,14 +46,14 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_
     <form class="formsignup formmarg" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <a class="form_link" href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <p>Mettre à jour ses informations</p>
-        <input type="text" name="lastname" id="lastname" value="<?= $_SESSION['lastname']?>" placeholder="Nom" />
+        <input type="text" name="lastname" id="lastname" <?php if (isset($temporary_lastname)) { ?> value="<?= $temporary_lastname ?>" <?php } else {?> value="<?= $_SESSION['lastname']?>" <?php } ?> placeholder="Nom" />
         <?php if (isset($lastname_message_alert)) { ?> <p class="alert_message"><?= $lastname_message_alert; ?></p><?php } ?>
-        <input type="text" name="firstname" id="firstname" value="<?= $_SESSION['firstname']?>" placeholder="Prénom" />
+        <input type="text" name="firstname" id="firstname" <?php if (isset($temporary_firstname)) { ?> value="<?= $temporary_firstname ?>" <?php } else {?> value="<?= $_SESSION['firstname']?>" <?php } ?> placeholder="Prénom" />
         <?php if (isset($firstname_message_alert)) { ?> <p class="alert_message"><?= $firstname_message_alert; ?></p><?php } ?>
-        <input type="text" name="pseudonym" id="pseudonym" value="<?= $_SESSION['pseudonym']?>" placeholder="Pseudonyme">
+        <input type="text" name="pseudonym" id="pseudonym" <?php if (isset($temporary_pseudonym)) { ?> value="<?= $temporary_pseudonym ?>" <?php } else {?> value="<?= $_SESSION['pseudonym']?>" <?php } ?> placeholder="Pseudonyme">
         <?php if (isset($pseudo_message_alert)) { ?> <p class="alert_message"><?= $pseudo_message_alert; ?></p><?php } ?>
         <?php if (isset($pseudo_exist_message_alert)) { ?> <p class="alert_message"><?= $pseudo_exist_message_alert; ?></p><?php } ?>
-        <input type="email" name="email" id="email" value="<?= $_SESSION['email']?>" placeholder="E-mail">
+        <input type="email" name="email" id="email" <?php if (isset($temporary_email)) { ?> value="<?= $temporary_email ?>" <?php } else {?> value="<?= $_SESSION['email']?>" <?php } ?> placeholder="E-mail">
         <?php if (isset($email_message_alert)) { ?> <p class="alert_message"><?= $email_message_alert; ?></p><?php } ?>
         <?php if (isset($email_exist_message_alert)) { ?> <p class="alert_message"><?= $email_exist_message_alert; ?></p><?php } ?>
         <h4 class="h4-info-modif">Recevoir une notification par e-mail lorsqu'un commentaire est posté sur ma photo :</h4>
@@ -69,7 +79,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Admin/Updating/info_
     <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <a href="/Camagru/View/Admin/Profile/profile_admin.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
         <p class="actual_pass">Entrez votre mot de passe actuel</p>
-        <input class="last_input" type="password" name="password" id="password" placeholder="Mot de passe">
+        <input class="last_input" type="password" name="password" id="password" placeholder="Mot de passe" <?php if (isset($temporary_info_password)) {?> value="<?= $temporary_info_password ?>" <?php  } ?>>
         <?php if (isset($result_pass_message)){?> <p class="alert_message"><?=$result_pass_message;?></p><?php }?>
         <button class="button" type="submit" name="valid_butt">Valider</button>
     </form>

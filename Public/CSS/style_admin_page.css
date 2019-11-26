@@ -511,7 +511,7 @@ video {
     margin-top: 20px;
     background-color: #FAFAFA;
     position: unset;
-    margin-top: 0;
+    margin-top: 10px;
 }
 
 .filter {
@@ -539,8 +539,10 @@ video {
     border: 1px solid #efefef;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     justify-content: center;
     padding: 13px;
+    padding-left: 26px;
 }
 
 #individualPicture {
@@ -738,7 +740,107 @@ h4 {
     color: #586069;
 }
 
-/* ----------------------------------------------- take pictures ----------------------------------------------- */
+/* ----------------------------------------------- Responsive ----------------------------------------------- */
+
+@media all and (min-width: 2230px) and (max-width: 2340px)
+{
+    #my-photos-container-2 {
+        margin-left: 23%;
+    }
+
+    #my-photos-2 {
+        width: 1365px;
+        height: 1755px;
+    }
+
+    .img-home-page {
+        width: 433px;
+    }
+
+    #comments {
+        margin-left: 1740px;
+    }
+}
+
+@media all and (min-width: 2115px) and (max-width: 2230px)
+{
+    #my-photos-container-2 {
+        margin-left: 29%;
+    }
+
+    #my-photos-2 {
+        width: 1185px;
+        height: 1755px;
+    }
+
+    .img-home-page {
+        width: 375px;
+    }
+
+    #comments {
+        margin-left: 1620px;
+    }
+
+    #individualPicture-2 {
+        width: 398px;
+    }
+
+    .comment-word {
+        margin-left: 240px;
+    }
+}
+
+@media all and (min-width: 1885px) and (max-width: 2115px)
+{
+    #my-photos-container-2 {
+        margin-left: 32%;
+    }
+
+    #my-photos-2 {
+        width: 1014px;
+        height: 1406px;
+    }
+
+    .img-home-page {
+        width: 325px;
+    }
+
+    #comments {
+        margin-left: 1392px;
+    }
+
+    #individualPicture-2 {
+        width: 335px;
+    }
+
+    .comment-word {
+        margin-left: 175px;
+    }
+}
+
+@media all and (min-width: 2000px) and (max-width: 2200px)
+{
+    #my-photos-container {
+        margin-left: 19%;
+    }
+}
+
+@media all and (min-width: 1885px) and (max-width: 2000px)
+{
+    #my-photos-container {
+        margin-left: 20%;
+    }
+
+    #my-photos {
+        width: 1400px;
+        height: 1735px;
+    }
+
+    .img-my-gallery {
+        width: 450px;
+    }
+}
+
 @media all and (min-width: 1885px) and (max-width: 2250px)
 {
     #filters {
@@ -751,6 +853,13 @@ h4 {
 
     #takePicture {
         margin-right: 10%;
+    }
+}
+
+@media all and (min-width: 1650px) and (max-width: 2030px)
+{
+    .success_modif {
+        margin-left: 8%;
     }
 }
 
@@ -767,6 +876,44 @@ h4 {
     #takePicture {
         margin-right: 10%;
         margin-left: 0;
+    }
+
+    #my-photos-container {
+        margin-left: 23%;
+    }
+
+    #my-photos {
+        width: 1220px;
+        height: 1575px;
+    }
+
+    .img-my-gallery {
+        width: 400px;
+    }
+
+    #my-photos-container-2 {
+        margin-left: 38%;
+    }
+
+    #my-photos-2 {
+        width: 829px;
+        height: 1220px;
+    }
+
+    .img-home-page {
+        width: 263px;
+    }
+
+    #comments {
+        margin-left: 1185px;
+    }
+
+    #individualPicture-2 {
+        width: 276px;
+    }
+
+    .comment-word {
+        margin-left: 125px;
     }
 }
 
@@ -792,7 +939,55 @@ h4 {
     #filters {
         width: 520px;
     }
+
+    #my-photos-container {
+        margin-left: 23%;
+    }
+
+    #my-photos {
+        width: 1040px;
+        height: 1415px;
+    }
+
+    .img-my-gallery {
+        width: 345px;
+    }
+
+    #my-photos-container-2 {
+        margin-left: 51%;
+    }
+
+    #my-photos-2 {
+        width: 610px;
+        height: 1930px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-home-page {
+        width: 286px;
+    }
+
+    #comments {
+        margin-left: 958px;
+    }
+
+    #individualPicture-2 {
+        width: 280px;
+    }
+
+    .comment-word {
+        margin-left: 145px;
+    }
 }
+
+@media all and (min-width: 1535px) and (max-width: 1650px)
+{
+    .success_modif {
+        margin-left: 1%;
+    }
+}
+
 
 @media all and (min-width: 1050px) and (max-width: 1440px)
 {
@@ -821,22 +1016,61 @@ h4 {
     }
 
     #photos-block {
-        margin-top: 315px;
+        margin-top: 450px;
     }
-}
 
-/* ----------------------------------------------- display info ----------------------------------------------- */
-@media all and (min-width: 1650px) and (max-width: 2030px)
-{
-    .success_modif {
-        margin-left: 8%;
+    #my-photos-container {
+        margin-left: 31.5%;
     }
-}
 
-@media all and (min-width: 1535px) and (max-width: 1650px)
-{
-    .success_modif {
-        margin-left: 1%;
+    #my-photos {
+        width: 661px;
+        height: 2030px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-my-gallery {
+        width: 330px;
+    }
+
+    #my-photos-container-2 {
+        margin-left: 58%;
+        margin-bottom: 0;
+    }
+
+    #my-photos-2 {
+        width: 610px;
+        height: 1930px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-home-page {
+        width: 286px;
+    }
+
+    #comments {
+        position: unset;
+        margin-left: 70%;
+        margin-top: 145px;
+        margin-bottom: 200px;
+    }
+
+    #individualPicture-2 {
+        width: 280px;
+    }
+
+    .comment-word {
+        margin-left: 145px;
+    }
+
+    #all-pages {
+        flex-direction: column;
+    }
+
+    .pagination-home-page {
+        width: 633px;
     }
 }
 
@@ -867,13 +1101,11 @@ h4 {
     }
 }
 
-
-/* ----------------------------------------------- form update ----------------------------------------------- */
 @media all and (min-width: 830px) and (max-width: 1050px)
 {
     .success_modif {
-        margin-top: 565px;
-        margin-left: -18%;
+        margin-top: 36px;
+        margin-left: 15%;
     }
 
     .success_message {
@@ -899,8 +1131,8 @@ h4 {
     }
 
     .update_info {
-        margin-top: 540px;
-        margin-left: -10%;
+        margin-top: 0px;
+        margin-left: 20%;
         margin-bottom: 100px;
     }
     
@@ -934,7 +1166,65 @@ h4 {
     }
 
     #photos-block {
-        margin-top: 315px;
+        margin-top: 450px;
+    }
+
+    #my-photos-container {
+        margin-left: 12.5%;
+    }
+
+    #my-photos {
+        width: 661px;
+        height: 2030px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-my-gallery {
+        width: 330px;
+    }
+
+    .pagination {
+        width: 730px;
+    }
+
+    #my-photos-container-2 {
+        margin-left: 18%;
+        margin-bottom: 0;
+    }
+
+    #my-photos-2 {
+        width: 610px;
+        height: 1930px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-home-page {
+        width: 286px;
+    }
+
+    #comments {
+        position: unset;
+        margin-left: 26%;
+        margin-top: 145px;
+        margin-bottom: 200px;
+    }
+
+    #individualPicture-2 {
+        width: 280px;
+    }
+
+    .comment-word {
+        margin-left: 145px;
+    }
+
+    #all-pages {
+        flex-direction: column;
+    }
+
+    .pagination-home-page {
+        width: 633px;
     }
 }
 
@@ -981,7 +1271,7 @@ h4 {
         flex-direction: column;
         width: 377px;
         margin-top: 80px;
-        margin-left: 5%;
+        margin-left: 20%;
     }
 
     #canvas {
@@ -993,6 +1283,7 @@ h4 {
     #takePicture {
         margin-right: 3%;
         margin-left: 0;
+        width: 379px;
     }
 
     #photos {
@@ -1009,11 +1300,69 @@ h4 {
     }
 
     #form-upld-img {
-        margin-left: 117px;
+        margin-left: 114px;
     }
 
     #photos-block {
         margin-top: 315px;
+    }
+
+    #my-photos-container {
+        margin-left: 14.5%;
+    }
+
+    #my-photos {
+        width: 493px;
+        height: 5620px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(12, 1fr);
+    }
+
+    .img-my-gallery {
+        width: 490px;
+    }
+
+    .pagination {
+        width: 545px;
+    }
+
+    #my-photos-container-2 {
+        margin-left: 1%;
+        margin-bottom: 0;
+    }
+
+    #my-photos-2 {
+        width: 610px;
+        height: 1930px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-home-page {
+        width: 286px;
+    }
+
+    #comments {
+        position: unset;
+        margin-left: 15%;
+        margin-top: 145px;
+        margin-bottom: 200px;
+    }
+
+    #individualPicture-2 {
+        width: 280px;
+    }
+
+    .comment-word {
+        margin-left: 145px;
+    }
+
+    #all-pages {
+        flex-direction: column;
+    }
+
+    .pagination-home-page {
+        width: 633px;
     }
 
 }
@@ -1074,19 +1423,26 @@ h4 {
 
     .takepicture-container {
         flex-direction: column;
-        width: 521px;
+        width: 377px;
         margin-top: 80px;
-        margin-left: 20%;
+        margin-left: 0.7%;
+    }
+
+    #canvas {
+        width: 350px;
+        height: 250px;
+        margin-left: 4px;
     }
 
     #takePicture {
         margin-right: 3%;
         margin-left: 0;
+        width: 379px;
     }
 
     #photos {
         width: 336px;
-        margin-left: 100px;
+        margin-left: 20px;
     }
 
     #photos img {
@@ -1094,11 +1450,72 @@ h4 {
     }
 
     #filters {
-        width: 520px;
+        width: 375px;
+    }
+
+    #form-upld-img {
+        margin-left: 114px;
     }
 
     #photos-block {
         margin-top: 315px;
     }
 
+    #my-photos-container {
+        margin-left: 1%;
+    }
+
+    #my-photos {
+        width: 432px;
+        height: 5620px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(12, 1fr);
+    }
+
+    .img-my-gallery {
+        width: 440px;
+    }
+
+    .pagination {
+        width: 490px;
+    }
+
+    #my-photos-container-2 {
+        margin-left: 1%;
+        margin-bottom: 0;
+    }
+
+    #my-photos-2 {
+        width: 450px;
+        height: 1570px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .img-home-page {
+        width: 210px;
+    }
+
+    #comments {
+        position: unset;
+        margin-left: 4%;
+        margin-top: 145px;
+        margin-bottom: 200px;
+    }
+
+    #individualPicture-2 {
+        width: 211px;
+    }
+
+    .comment-word {
+        margin-left: 70px;
+    }
+
+    #all-pages {
+        flex-direction: column;
+    }
+
+    .pagination-home-page {
+        width: 460px;
+    }
 }

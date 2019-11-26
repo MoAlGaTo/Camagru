@@ -3,24 +3,36 @@ session_start();
 ob_start();
 if (!empty($_SESSION))
 {
-    header("location: /Camagru/View/Admin/home_page.php");
+	header("location: /Camagru/View/Admin/home_page.php");
+	die();
 }
-	// Messages d'erreur inscription
-	$empty_message_alert = NULL;
-	$lastname_message_alert = NULL;
-	$firstname_message_alert = NULL;
-	$pseudo_message_alert = NULL;
-	$email_message_alert = NULL;
-	$password_message_alert = NULL;
-	$password_confirm_message_alert = NULL;
-	$pseudo_exist_message_alert = NULL;
-	$email_exist_message_alert = NULL;
-	$failure_message = NULL;
+// Messages d'erreur inscription
+$empty_message_alert = NULL;
+$lastname_message_alert = NULL;
+$firstname_message_alert = NULL;
+$pseudo_message_alert = NULL;
+$email_message_alert = NULL;
+$password_message_alert = NULL;
+$password_confirm_message_alert = NULL;
+$pseudo_exist_message_alert = NULL;
+$email_exist_message_alert = NULL;
+$failure_message = NULL;
 
-	// Mesages d'erreur connexion
-	$empty_message_alert_connect = NULL;
-	$connector_message_alert = NULL;
-    $password_message_alert_connect = NULL;
+// Mesages d'erreur connexion
+$empty_message_alert_connect = NULL;
+$connector_message_alert = NULL;
+$password_message_alert_connect = NULL;
+
+// Sauvegarde informations entrees
+$temporary_connector = NULL;
+$temporary_password_connector = NULL;
+
+$temporary_lastname = NULL;
+$temporary_firstname = NULL;
+$temporary_pseudonym = NULL;
+$temporary_email = NULL;
+$temporary_password = NULL;
+$temporary_confirm_password= NULL;
     
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Controller/Registration/account_checking.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
@@ -98,11 +110,11 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_likes.php");
 						}
 					?>
 					<div id="like-comment">
-						<img src='/Camagru/Public/Image/love_black.png' onmouseout="this.src='/Camagru/Public/Image/love_black.png';" onmouseover="this.src='/Camagru/Public/Image/love.png';" id="like" class="form-like-comment like">
+						<img src='/Camagru/Public/Image/love_black.png' onmouseout="this.src='/Camagru/Public/Image/love_black.png';" onmouseover="this.src='/Camagru/Public/Image/love.png';" id="like" class="form-like-comment like" onclick="alertLike()">
 
 						<p class="like-phrase"><?= $likes_number ?><span class="like-word">j'aime</span></p>
 
-						<img src='/Camagru/Public/Image/comment-white-oval-bubble.png' onmouseover="this.src='/Camagru/Public/Image/comment-black-oval-bubble-shape.png';" onmouseout="this.src='/Camagru/Public/Image/comment-white-oval-bubble.png';" id="comment" class="like comment-word">
+						<img src='/Camagru/Public/Image/comment-white-oval-bubble.png' onmouseover="this.src='/Camagru/Public/Image/comment-black-oval-bubble-shape.png';" onmouseout="this.src='/Camagru/Public/Image/comment-white-oval-bubble.png';" id="comment" class="like comment-word" onclick="alertComment()">
 					</div>
 				</div>
 		<?php	$start++; 
@@ -131,9 +143,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_likes.php");
         <!-- connexion -->
         <form class="formsignup" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <a href="/Camagru/index.php"><img src="/Camagru/Public/Image/camagru_logo.png"></a>
-            <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme"/>
+            <input type="text" name="pseudo_mail" id="pseudo_mail" placeholder="Adresse e-mail ou Pseudonyme" <?php if (isset($temporary_connector)) {?> value="<?= $temporary_connector ?>" <?php  }?>/>
             <?php if (isset($connector_message_alert)){?> <p class="alert_message"><?=$connector_message_alert;?></p><?php }?>
-            <input class="last_input" type="password" name="password_user" id="password_user" placeholder="Mot de passe"/>
+            <input class="last_input" type="password" name="password_user" id="password_user" placeholder="Mot de passe" <?php if (isset($temporary_password_connector)) {?> value="<?= $temporary_password_connector ?>" <?php  }?>/>
             <?php if (isset($password_message_alert_connect)){?> <p class="alert_message"><?=$password_message_alert_connect;?></p><?php }?>
             <?php if (isset($empty_message_alert_connect)){?><p class="alert_message"><?=$empty_message_alert_connect;?></p><?php }?>
             <button class="button fbutton" type="submit" name="connexion_butt">Se Connecter</button>
@@ -143,19 +155,19 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_likes.php");
         <!-- inscription -->
         <form class="formsignup formmarg" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
             <p>Pas encore de compte ? Inscrivez-vous pour voir les photos montages de vos amis.</p>
-            <input type="text" name="lastname" id="lastname" placeholder="Nom"/>
+            <input type="text" name="lastname" id="lastname" placeholder="Nom" <?php if (isset($temporary_lastname)) {?> value="<?= $temporary_lastname ?>" <?php  }?>/>
             <?php if (isset($lastname_message_alert)){?> <p class="alert_message"><?=$lastname_message_alert;?></p><?php }?>
-            <input type="text" name="firstname" id="firstname" placeholder="Prénom"/>
+            <input type="text" name="firstname" id="firstname" placeholder="Prénom" <?php if (isset($temporary_firstname)) {?> value="<?= $temporary_firstname ?>" <?php  }?>/>
             <?php if (isset($firstname_message_alert)){?> <p class="alert_message"><?=$firstname_message_alert;?></p><?php }?>
-            <input type="text" name="pseudonym" id="pseudonym" placeholder="Pseudonyme">
+            <input type="text" name="pseudonym" id="pseudonym" placeholder="Pseudonyme" <?php if (isset($temporary_pseudonym)) {?> value="<?= $temporary_pseudonym ?>" <?php  }?>>
             <?php if (isset($pseudo_message_alert)){?> <p class="alert_message"><?=$pseudo_message_alert;?></p><?php }?>
             <?php if (isset($pseudo_exist_message_alert)){?> <p class="alert_message"><?=$pseudo_exist_message_alert;?></p><?php }?>
-            <input type="email" name="email" id="email" placeholder="E-mail">
+            <input type="email" name="email" id="email" placeholder="E-mail" <?php if (isset($temporary_email)) {?> value="<?= $temporary_email ?>" <?php  }?>>
             <?php if (isset($email_message_alert)){?> <p class="alert_message"><?=$email_message_alert;?></p><?php }?>
             <?php if (isset($email_exist_message_alert)){?> <p class="alert_message"><?=$email_exist_message_alert;?></p><?php }?>
-            <input type="password" name="password" id="password" placeholder="Mot de passe">
+            <input type="password" name="password" id="password" placeholder="Mot de passe" <?php if (isset($temporary_password)) {?> value="<?= $temporary_password ?>" <?php  }?>>
             <?php if (isset($password_message_alert)){?> <p class="alert_message"><?=$password_message_alert;?></p><?php }?>
-            <input class="last_input" type="password" name="password_confirm" id="password_confirm" placeholder="Confirmation mot de passe">
+            <input class="last_input" type="password" name="password_confirm" id="password_confirm" placeholder="Confirmation mot de passe" <?php if (isset($temporary_confirm_password)) {?> value="<?= $temporary_confirm_password ?>" <?php  }?>>
             <?php if (isset($password_confirm_message_alert)){?> <p class="alert_message"><?=$password_confirm_message_alert;?></p><?php }?>
             <?php if (isset($empty_message_alert)){?> <p class="alert_message"><?=$empty_message_alert;?></p><?php }?>
             <?php if (isset($failure_message)){?> <p class="alert_message"><?=$failure_message;?></p><?php }?>

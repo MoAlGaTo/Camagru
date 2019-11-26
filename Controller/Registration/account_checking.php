@@ -13,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
         $add_user_object = new user;
 
+        $temporary_lastname = htmlspecialchars($_POST['lastname']);
+        $temporary_firstname = htmlspecialchars($_POST['firstname']);
+        $temporary_pseudonym = htmlspecialchars($_POST['pseudonym']);
+        $temporary_email = htmlspecialchars($_POST['email']);
+        $temporary_password = htmlspecialchars($_POST['password']);
+        $temporary_confirm_password = htmlspecialchars($_POST['password_confirm']);
+
         if (!empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['pseudonym']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_confirm']))
         {
             $lastname = htmlspecialchars($_POST['lastname']);
@@ -65,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                     if ($add_user_object->send_email($email, $pseudonym, $confirm_key))
                     {
                         header("Location: /Camagru/View/User/Registration/unverified_email.php");
+                        die();
                     }
                     else
                     {
@@ -91,6 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     else if (isset($_POST['connexion_butt']))
     {
+        $temporary_connector = htmlspecialchars($_POST['pseudo_mail']);
+        $temporary_password_connector = htmlspecialchars($_POST['password_user']);
 
         if (!empty($_POST['pseudo_mail']) && !empty($_POST['password_user']))
         {
@@ -106,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     if ($identity['confirm_account_key'] == 1)
                     {
-                        session_start();
                         $_SESSION['id_user'] = $identity['id_user'];
                         $_SESSION['lastname'] = $identity['lastname'];
                         $_SESSION['firstname'] = $identity['firstname'];

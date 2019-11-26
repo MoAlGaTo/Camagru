@@ -2,7 +2,8 @@
 session_start();
 if (empty($_SESSION))
 {
-    header("location: /Camagru/index.php");
+	header("location: /Camagru/index.php");
+	die();
 }
 ob_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");

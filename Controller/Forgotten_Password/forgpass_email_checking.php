@@ -5,6 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     if (isset($_POST['modif_butt']))
     {
+        $temporary_getting_email = htmlspecialchars($_POST['email']);
+        
         if (!empty($_POST['email']))
         {
             $email_forgot = htmlspecialchars($_POST['email']);
@@ -57,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     else
     {
         header("location: /Camagru/View/404_error.html");
+        die();
     }
 }
 

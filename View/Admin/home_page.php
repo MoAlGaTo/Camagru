@@ -2,7 +2,8 @@
 session_start();
 if (empty($_SESSION))
 {
-    header("location: /Camagru/index.php");
+	header("location: /Camagru/index.php");
+	die();
 }
 ob_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_pictures.php");
@@ -57,7 +58,7 @@ $limit = $start + $totalDisplay;
 
 <div id="all-pages">
 	<div id="my-photos-container-2">
-		<div class="pagination top-pag">
+		<div class="pagination top-pag pagination-home-page">
 			<?php
 			echo '<a href="http://localhost:8080/Camagru/View/Admin/home_page.php?page=1">&laquo;</a>'; 
 			for ($i = 1; $i <= $totalPages; $i++)
@@ -112,7 +113,7 @@ $limit = $start + $totalDisplay;
 				}
 			?>
 		</div>
-		<div class="pagination bottom-pag">
+		<div class="pagination bottom-pag pagination-home-page">
 			<?php
 				echo '<a href="http://localhost:8080/Camagru/View/Admin/home_page.php?page=1">&laquo;</a>';
 				for ($i = 1; $i <= $totalPages; $i++)

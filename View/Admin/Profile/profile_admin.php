@@ -3,6 +3,7 @@ session_start();
 if (empty($_SESSION))
 {
     header("location: /Camagru/index.php");
+    die();
 }
 ob_start();
 ?>

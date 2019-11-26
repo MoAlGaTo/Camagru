@@ -5,6 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     if (isset($_POST['modif_butt']))
     {
+        $temporary_modif_password = htmlspecialchars($_POST['password']);
+        $temporary_confirm_modif_password = htmlspecialchars($_POST['password_confirm']);
+
         $pseudonym = htmlspecialchars($_GET['pseudo']);
         $confirm_key = htmlspecialchars($_GET['key']);
         $password_verif = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.;?\":{}\[\]|<>])(?=.{6,50}$)/";
@@ -14,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             if (empty($pseudonym) || empty($confirm_key))
             {
                 header("location: /Camagru/View/404_error.html");
+                die();
             }
             $passworduser = htmlspecialchars($_POST['password']);
             $passworduser_confirm = htmlspecialchars($_POST['password_confirm']);
@@ -44,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                             if (user::set_confirm_password_key(1, $pseudonym))
                             {
                                 header("location: /Camagru/View/User/Forgotten_Password/forgpass_updated.php?pseudo=$pseudonym");
+                                die();
                             }
                             else
                             {
@@ -63,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 else
                 {
                     header("location: /Camagru/View/404_error.html");
+                    die();
                 }
             }
         }
@@ -74,5 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     else
     {
         header("location: /Camagru/View/404_error.html");
+        die();
     }
 }

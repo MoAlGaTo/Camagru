@@ -11,5 +11,6 @@ if (session_status() === PHP_SESSION_NONE)
 else
 {
     header("location: /Camagru/View/404_error.html");
+    die();
 }
 ?>

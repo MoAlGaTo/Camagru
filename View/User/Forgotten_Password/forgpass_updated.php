@@ -1,4 +1,5 @@
-<?php ob_start();
+<?php
+ob_start();
 if (!empty($_GET['pseudo']))
 {
     $pseudonym = htmlspecialchars($_GET['pseudo']);

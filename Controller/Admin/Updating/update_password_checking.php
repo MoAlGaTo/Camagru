@@ -5,6 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     if (isset($_POST['valid_butt']))
     {
+        $temporary_modifpass_password = htmlspecialchars($_POST['password']);
+
         if (!empty($_POST['password']))
         {
             $passworduser = htmlspecialchars($_POST['password']);
@@ -26,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     else if (isset($_POST['modif_butt']))
     {
+        $temporary_password = htmlspecialchars($_POST['password']);
+        $temporary_confirm_password = htmlspecialchars($_POST['password_confirm']);
+
         $authentication = true;
         $password_verif = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.;?\":{}\[\]|<>])(?=.{6,50}$)/";
 
@@ -72,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     else
     {
         header("location: /Camagru/View/404_error.html");
+        die();
     }
 }
 
