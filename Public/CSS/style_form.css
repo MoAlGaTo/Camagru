@@ -277,9 +277,10 @@ hr {
     #home-disconnected {
         flex-direction: column-reverse;
         align-items: center;
+        margin-top: 0;
     }
 
-    form {
+    section {
         margin-bottom: 100px;
     }
 }
@@ -290,12 +291,15 @@ hr {
         flex-direction: column-reverse;
         align-items: center;
         margin-left: 15%;
-        margin-top: -75px;
+        margin-top: 0px;
     }
 
     form {
-        margin-bottom: 100px;
         align-items: center;
+    }
+
+    section {
+        margin-bottom: 100px;
     }
 
     #my-photos-2 {
@@ -327,8 +331,11 @@ hr {
     }
 
     form {
-        margin-bottom: 100px;
         align-items: center;
+    }
+
+    section {
+        margin-bottom: 100px;
     }
 
     #my-photos-2 {
