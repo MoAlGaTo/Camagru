@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_connect.php");
 
@@ -130,4 +131,25 @@ catch (PDOException $ex)
 
 $bdd = NULL;
 
+if (empty($_SESSION))
+{
+    header("location: /Camagru/index.php");
+    die();
+}
+else
+{
+    $_SESSION = array();
+    session_destroy();
+
+    if (session_status() === PHP_SESSION_NONE)
+    {
+        header("location: /Camagru/index.php");
+        exit;
+    }
+    else
+    {
+        header("location: /Camagru/View/404_error.html");
+        die();
+    }
+}
 ?>
