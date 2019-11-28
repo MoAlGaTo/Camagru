@@ -56,11 +56,22 @@ class picture
     {
         $db = connexion();
 
-        $statement = $db->prepare('DELETE FROM pictures WHERE id_picture=:id_picture');
+        $request = $db->prepare("SELECT * FROM pictures WHERE id_picture=:id_picture ");
 
-        $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
+        $request->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
 
-        $statement->execute();
+        $request->execute();
+
+        $result = $request->fetch();
+
+        if ($result[3] === $_SESSION['id_user'])
+        {
+            $statement = $db->prepare('DELETE FROM pictures WHERE id_picture=:id_picture');
+
+            $statement->bindValue(':id_picture', $id_picture, PDO::PARAM_INT);
+
+            $statement->execute();
+        }
     }
 }
 

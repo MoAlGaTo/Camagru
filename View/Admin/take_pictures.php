@@ -25,21 +25,17 @@ ob_start();
 <video id="video" width="500" height="400"></video>
 <div class="takepicture-container">
     <div id="takePicture">
-        <header>
             <button id="startCameraButton" class="green-btn">Activer la webcam</button>
             <canvas id="canvas" width="500" height="400"></canvas>
             <hr />
             <div id="div-button">
                 <button id="takePicture-button" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/button.png"></button>
             </div>
-
             <button id="clean-canvas" class="tp-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/canvas_cleaner.png"></button>
             <form id="form-upld-img" method="POST" enctype="multipart/form-data" action="">
                 <label for="upload-img" class="btn-upld">Télécharger une image</label>
                 <input type="file" style="visibility:hidden;" name="file" id="upload-img">
             </form>
-        </header>
-        <footer>
         <ul id="filters">
             <?php
             $filters = scandir($_SERVER['DOCUMENT_ROOT'] . '/Camagru/Public/Image/Filters');
@@ -54,14 +50,11 @@ ob_start();
             } ?>
         </ul>
         <button id="clear-filters" class="red-btn">Retirer tout les filtres</button>
-        </footer>
     </div>
-    <section>
     <div id="photos-block">
         <button id="clear-button" class="tp-btn clean-btn"><img class="tp-btn-img" src="/Camagru/Public/Image/clean_up.png"></button>
         <div id="photos"></div>
     </div>
-    </section>
 </div>
 <script src="/Camagru/Public/JavaScript/camera.js"></script>
 

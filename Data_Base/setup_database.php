@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/config/database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Camagru/Model/DB_connect.php");
 
 
 $bdd = $db = connexion();
