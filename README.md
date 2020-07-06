@@ -13,6 +13,8 @@ L'utilisateur propriétaire de la photo reçoit optionnellement un mail lorsque 
 
 L'utilisateur reçoit un mail de confirmation lors de son inscription. Il a aussi la possibilité de réinitialiser son mot de passe en cas d'oubli.
 
+Pour plus de précisions sur les consignes du projet -> camagru_subject_fr.pdf .
+
 **Camagru** a été dévellopé en:
 
 >- PHP pour le back-end
@@ -31,6 +33,8 @@ All images taken are public. They are also likable and can be commented if the u
 The user who owns the photo optionally receives an email when his photo has been commented.
 
 The user receives a confirmation email when he registers. He also has the possibility to reset his password in case he forgets it.
+
+For more information on the project guidelines -> camagru_subject_fr.pdf (in French).
 
 **Camagru** has been developed in:
 
